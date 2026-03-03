@@ -1,0 +1,117 @@
+{
+  "skill_name": "cam-user-guide-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to write a user guide for a new CAM feature called 'Portfolio Snapshot'. It lets users take a point-in-time snapshot of their entire portfolio — all accounts, positions, and balances — and save it for later comparison. Users can trigger it manually or schedule it daily. It's currently in beta. Can you draft the full user guide page for this?",
+      "expected_output": "A complete markdown file with correct VuePress frontmatter (title, date, permalink, categories, tags, order, subTitle), proper section structure (Introduction, Important Notes for beta, User Guide with sub-sections for manual and scheduled snapshots), correct CAM terminology, English-only content, screenshot placeholders, and appropriate callout boxes.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-valid-frontmatter",
+          "description": "File starts with --- and includes title, date, permalink, categories, order, and subTitle fields"
+        },
+        {
+          "id": "permalink-format-correct",
+          "description": "Permalink matches the /user-guide/<slug>/ pattern"
+        },
+        {
+          "id": "has-introduction-section",
+          "description": "Contains an Introduction section explaining what Portfolio Snapshot does"
+        },
+        {
+          "id": "mentions-beta-status",
+          "description": "Includes a note about beta status (Important Notes section or callout box)"
+        },
+        {
+          "id": "covers-manual-and-scheduled",
+          "description": "Mentions both manual trigger and scheduled/daily snapshot modes"
+        },
+        {
+          "id": "has-screenshot-placeholders",
+          "description": "Contains at least one image reference using ![...](...) syntax"
+        },
+        {
+          "id": "english-only",
+          "description": "No Chinese characters appear anywhere in the content"
+        },
+        {
+          "id": "uses-cam-terminology",
+          "description": "Uses CAM-specific terms like portfolio, account, NAV, or similar"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're adding a new section to the Live Risk manual about a feature called 'Threshold Breach History'. It shows a log of all past alert rule breaches with timestamps, severity, and which portfolio triggered it. Users can filter by date range and export to CSV. Write the section content I can add to the existing live-risk.md file.",
+      "expected_output": "A well-structured markdown section (not a full file) with a heading, intro paragraph, step-by-step instructions for accessing and using the feature, field explanations, and screenshot placeholders. Should follow the existing Live Risk doc style.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "is-section-not-full-page",
+          "description": "Does NOT contain YAML frontmatter (no --- block at the top of the file)"
+        },
+        {
+          "id": "has-section-heading",
+          "description": "Starts with or contains a ## or ### level heading for Threshold Breach History"
+        },
+        {
+          "id": "covers-key-fields",
+          "description": "Mentions timestamp, severity, and portfolio in the content"
+        },
+        {
+          "id": "mentions-csv-export",
+          "description": "Mentions CSV export functionality"
+        },
+        {
+          "id": "mentions-date-filter",
+          "description": "Mentions date range filtering capability"
+        },
+        {
+          "id": "has-screenshot-placeholders",
+          "description": "Contains at least one image reference using ![...](...) syntax"
+        },
+        {
+          "id": "english-only",
+          "description": "No Chinese characters appear anywhere in the content"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Help me write a user guide for setting up a DeFi wallet account in CAM. The user needs to: 1) go to Ops & Accounting > API Account Setup > DeFi, 2) click Add Account, 3) select the chain (Ethereum, Solana, etc.), 4) paste their wallet address, 5) optionally add a label and portfolio tag, 6) click Confirm. There are some notes: read-only, no private key needed, supports EVM chains and Solana.",
+      "expected_output": "A complete onboarding-style guide with numbered step headings, screenshot placeholders after each step, correct frontmatter, important notes section about read-only access and supported chains, and proper CAM terminology.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-valid-frontmatter",
+          "description": "File starts with --- and includes title, date, permalink, categories, order, and subTitle fields"
+        },
+        {
+          "id": "uses-numbered-step-headings",
+          "description": "Uses numbered headings like ### 1. or ### Step 1 for each setup step"
+        },
+        {
+          "id": "covers-all-6-steps",
+          "description": "Covers all 6 steps: DeFi navigation, Add Account, chain selection, wallet address input, label/portfolio tag, and Confirm"
+        },
+        {
+          "id": "mentions-read-only",
+          "description": "Notes that no private key is needed and/or access is read-only"
+        },
+        {
+          "id": "mentions-supported-chains",
+          "description": "Mentions EVM chains and/or Solana as supported chains"
+        },
+        {
+          "id": "has-screenshot-placeholders",
+          "description": "Contains at least one image reference using ![...](...) syntax"
+        },
+        {
+          "id": "english-only",
+          "description": "No Chinese characters appear anywhere in the content"
+        }
+      ]
+    }
+  ]
+}

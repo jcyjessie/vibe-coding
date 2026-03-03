@@ -1,0 +1,23 @@
+{
+  "feature_name": "home-tab-menu",
+  "capture_date": "2026-03-02T22:54:13.857716",
+  "capture_mode": "field_dependency_exploration",
+  "total_steps": 1,
+  "field_dependencies": {},
+  "steps": [
+    {
+      "step_number": 1,
+      "step_name": "01-initial-page",
+      "description": "Initial page load",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "01-initial-page_20260302_225413.png",
+      "timestamp": "20260302_225413",
+      "form_state": {
+        "visible_fields": [],
+        "field_values": {},
+        "dropdown_options": {}
+      }
+    }
+  ]
+}

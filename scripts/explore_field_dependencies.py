@@ -583,8 +583,10 @@ class FieldDependencyExplorer:
                     "current": current_props
                 }
             elif baseline_state[field_id] != current_props:
-                # Determine if it's options change or field modification
-                if self._is_options_change(baseline_state[field_id], current_props):
+                # Determine if it's options change, dialog change, validation error, or field modification
+                if self._is_dialog_field(field_id, current_state):
+                    change_type = ChangeType.DIALOG_OPENED.value
+                elif self._is_options_change(baseline_state[field_id], current_props):
                     change_type = ChangeType.OPTIONS_CHANGED.value
                 elif self._is_validation_error(current_props):
                     change_type = ChangeType.VALIDATION_ERROR.value
@@ -619,7 +621,20 @@ class FieldDependencyExplorer:
     def _is_dialog_field(self, field_id: str, state: dict) -> bool:
         """Check if field is part of a dialog based on naming patterns"""
         dialog_keywords = ["dialog", "modal", "popup", "overlay"]
-        return any(keyword in field_id.lower() for keyword in dialog_keywords)
+
+        # Check if field_id itself contains dialog keywords
+        if any(keyword in field_id.lower() for keyword in dialog_keywords):
+            return True
+
+        # Special case: check if visible_fields list contains dialog-related items
+        if field_id == "visible_fields" and isinstance(state.get(field_id), list):
+            visible_items = state.get(field_id, [])
+            dialog_items = [item for item in visible_items
+                          if any(keyword in str(item).lower() for keyword in dialog_keywords)]
+            # Consider it a dialog if multiple dialog-related items are present
+            return len(dialog_items) >= 2
+
+        return False
 
     def _is_options_change(self, baseline_props: dict, current_props: dict) -> bool:
         """Check if change is specifically about dropdown options"""

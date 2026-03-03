@@ -1,0 +1,532 @@
+{
+  "buttons": [
+    "V2",
+    "PnL Chart",
+    "Reporting",
+    "Table View",
+    "History & Ledger",
+    "Columns",
+    "Filters",
+    "Columns",
+    "Confirm"
+  ],
+  "inputs": [
+    {
+      "type": "text",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "hidden",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "Select or Search a Portfolio",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "Start Date",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "End date",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "hidden",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "Search...",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "Search...",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "text",
+      "placeholder": "Search...",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    },
+    {
+      "type": "checkbox",
+      "placeholder": "",
+      "name": ""
+    }
+  ],
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "CAM System"
+    }
+  ],
+  "timeRelated": [
+    {
+      "tag": "div",
+      "text": "Upgrade successful, Time: Please Refresh"
+    },
+    {
+      "tag": "div",
+      "text": "History & Ledger"
+    },
+    {
+      "tag": "div",
+      "text": "Equity Movements\n$ -\nBeginning Equity\n$ -\nEnding Equity\n$ -"
+    },
+    {
+      "tag": "div",
+      "text": "Beginning Equity\n$ -\nEnding Equity\n$ -"
+    },
+    {
+      "tag": "div",
+      "text": "Ending Equity\n$ -"
+    },
+    {
+      "tag": "div",
+      "text": "Ending Equity"
+    },
+    {
+      "tag": "div",
+      "text": "Drag here to set column labels"
+    },
+    {
+      "tag": "div",
+      "text": "Sum(Period Total PnL (USD))"
+    },
+    {
+      "tag": "div",
+      "text": "Sum(Period UPnL (USD))"
+    },
+    {
+      "tag": "div",
+      "text": "Sum(Period RPnL (USD))"
+    },
+    {
+      "tag": "div",
+      "text": "Sum(Ending UPnL (USD))"
+    },
+    {
+      "tag": "div",
+      "text": "Protocol"
+    },
+    {
+      "tag": "div",
+      "text": "Column Labels\nDrag here to set column labels"
+    },
+    {
+      "tag": "span",
+      "text": "Customized Tag"
+    },
+    {
+      "tag": "span",
+      "text": "% Period Total PnL (USD)"
+    },
+    {
+      "tag": "span",
+      "text": "Period Total PnL (USD)"
+    },
+    {
+      "tag": "span",
+      "text": "Period UPnL (USD)"
+    },
+    {
+      "tag": "span",
+      "text": "Period RPnL (USD)"
+    },
+    {
+      "tag": "span",
+      "text": "Ending UPnL (USD)"
+    },
+    {
+      "tag": "span",
+      "text": "Period Total PnL (Coin)"
+    },
+    {
+      "tag": "span",
+      "text": "Period UPnL (Coin)"
+    },
+    {
+      "tag": "span",
+      "text": "Period RPnL (Coin)"
+    },
+    {
+      "tag": "span",
+      "text": "Ending UPnL (Coin)"
+    },
+    {
+      "tag": "span",
+      "text": "Ending Amount"
+    },
+    {
+      "tag": "span",
+      "text": "Ending Avg. Cost"
+    },
+    {
+      "tag": "span",
+      "text": "Ending Price"
+    },
+    {
+      "tag": "span",
+      "text": "Settle. Coin Ending Price (USD)"
+    },
+    {
+      "tag": "span",
+      "text": "to"
+    },
+    {
+      "tag": "div",
+      "text": "Drag here to set row groups"
+    },
+    {
+      "tag": "div",
+      "text": "Column LabelsDrag here to set column labels"
+    },
+    {
+      "tag": "div",
+      "text": "Customize Download"
+    },
+    {
+      "tag": "div",
+      "text": "Beginning UPnL: $   Ending UPnL: $"
+    },
+    {
+      "tag": "div",
+      "text": "Ending UPnL: $"
+    },
+    {
+      "tag": "div",
+      "text": "Please save as customized view, then set precision."
+    },
+    {
+      "tag": "div",
+      "text": "Autosize All Columns"
+    },
+    {
+      "tag": "li",
+      "text": "Unrealized PnL (UPnL): Profit or loss from open positions."
+    }
+  ]
+}

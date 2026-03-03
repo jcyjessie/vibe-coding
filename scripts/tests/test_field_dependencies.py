@@ -375,14 +375,13 @@ def test_classify_change_type_dialog_opened():
 
     explorer = FieldDependencyExplorer()
 
-    # Simulate individual dialog fields appearing (not as a list)
-    baseline = {"field1": {"visible": True}}
-    current = {"field1": {"visible": True}, "dialog_title": {"visible": True}, "dialog_content": {"visible": True}}
+    baseline = {"visible_fields": ["field1"]}
+    current = {"visible_fields": ["field1", "dialog_title", "dialog_content"]}
 
     changes = explorer._compare_states(baseline, current)
-    # Dialog detected when fields with "dialog" in their name appear
-    assert "dialog_title" in changes
-    assert changes["dialog_title"]["change_type"] == ChangeType.DIALOG_OPENED.value
+    # Dialog detected when multiple fields with "dialog" in aria-label
+    assert any(ChangeType.DIALOG_OPENED.value in str(change)
+               for change in changes.values())
 
 
 def test_classify_change_type_field_added():

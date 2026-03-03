@@ -1,0 +1,6586 @@
+{
+  "feature_name": "routine-report",
+  "capture_date": "2026-03-02T18:20:12.701307",
+  "capture_mode": "field_dependency_exploration",
+  "total_steps": 42,
+  "field_dependencies": {
+    "​Category": {
+      "Live Risk": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Live Risk"
+            }
+          },
+          "Select or Search a Portfolio": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "Bottom Up PnL Analysis": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Live Risk"
+            },
+            "after": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            }
+          }
+        }
+      },
+      "Statistics": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics"
+            }
+          },
+          "input_3": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "Fund Accounting": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Statistics"
+            },
+            "after": {
+              "type": "text",
+              "value": "Fund Accounting"
+            }
+          }
+        }
+      },
+      "History & Ledger": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Fund Accounting"
+            },
+            "after": {
+              "type": "text",
+              "value": "History & Ledger"
+            }
+          }
+        }
+      }
+    },
+    "Category": {
+      "Live Risk": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "History & Ledger"
+            },
+            "after": {
+              "type": "text",
+              "value": "Live Risk"
+            }
+          },
+          "Select or Search a Portfolio": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "Bottom Up PnL Analysis": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Live Risk"
+            },
+            "after": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            }
+          }
+        }
+      },
+      "Statistics": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics"
+            }
+          },
+          "input_3": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "Fund Accounting": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Statistics"
+            },
+            "after": {
+              "type": "text",
+              "value": "Fund Accounting"
+            }
+          }
+        }
+      },
+      "History & Ledger": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Fund Accounting"
+            },
+            "after": {
+              "type": "text",
+              "value": "History & Ledger"
+            }
+          }
+        }
+      }
+    },
+    "​Contents": {
+      "Overview": {
+        "new_fields": [
+          "Volatility Source"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Overview"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Exchange"
+            }
+          },
+          "input_5": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_7": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_9": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_13": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Volatility Source"
+            }
+          },
+          "dropdown_4": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_5": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "Loader File": {
+        "new_fields": [
+          "Accounting Software",
+          "Export Mode",
+          "Accounting Rule",
+          "Data Types",
+          "Consolidate",
+          "Valuation CCY."
+        ],
+        "hidden_fields": [
+          "Volatility Source"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Overview"
+            },
+            "after": {
+              "type": "text",
+              "value": "Loader File"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Exchange"
+            },
+            "after": {
+              "type": "text",
+              "value": "Paxus"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "IFRS"
+            }
+          },
+          "input_6": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "No Consolidation"
+            }
+          },
+          "input_7": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          },
+          "input_8": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "USD"
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_12": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_14": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_16": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_17": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_20": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Volatility Source"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Software"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Consolidate"
+            }
+          },
+          "dropdown_6": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_7": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            }
+          },
+          "dropdown_8": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_9": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_10": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_11": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "Records": {
+        "hidden_fields": [
+          "Accounting Rule",
+          "Consolidate",
+          "Accounting Software",
+          "Valuation CCY."
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Loader File"
+            },
+            "after": {
+              "type": "text",
+              "value": "Records"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Paxus"
+            },
+            "after": {
+              "type": "text",
+              "value": "Aggregate Export"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": "IFRS"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_6": {
+            "before": {
+              "type": "text",
+              "value": "No Consolidation"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_8": {
+            "before": {
+              "type": "text",
+              "value": "USD"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_13": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Software"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types All"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​Consolidate"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_6": {
+            "before": {
+              "type": "select",
+              "value": "​Export Mode"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_7": {
+            "before": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      }
+    },
+    "Contents": {
+      "Overview": {
+        "new_fields": [
+          "Volatility Source"
+        ],
+        "hidden_fields": [
+          "Export Mode",
+          "Data Types"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Records"
+            },
+            "after": {
+              "type": "text",
+              "value": "Overview"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Aggregate Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Exchange"
+            }
+          },
+          "input_7": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_9": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_13": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Export Mode"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Volatility Source"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types All"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "Loader File": {
+        "new_fields": [
+          "Accounting Software",
+          "Export Mode",
+          "Accounting Rule",
+          "Data Types",
+          "Consolidate",
+          "Valuation CCY."
+        ],
+        "hidden_fields": [
+          "Volatility Source"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Overview"
+            },
+            "after": {
+              "type": "text",
+              "value": "Loader File"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Exchange"
+            },
+            "after": {
+              "type": "text",
+              "value": "Paxus"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "IFRS"
+            }
+          },
+          "input_6": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "No Consolidation"
+            }
+          },
+          "input_7": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          },
+          "input_8": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "USD"
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_12": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_14": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_16": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_17": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_20": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Volatility Source"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Software"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Consolidate"
+            }
+          },
+          "dropdown_6": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_7": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            }
+          },
+          "dropdown_8": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_9": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_10": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_11": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "Records": {
+        "hidden_fields": [
+          "Accounting Rule",
+          "Consolidate",
+          "Accounting Software",
+          "Valuation CCY."
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Loader File"
+            },
+            "after": {
+              "type": "text",
+              "value": "Records"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Paxus"
+            },
+            "after": {
+              "type": "text",
+              "value": "Aggregate Export"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": "IFRS"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_6": {
+            "before": {
+              "type": "text",
+              "value": "No Consolidation"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_8": {
+            "before": {
+              "type": "text",
+              "value": "USD"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_13": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Software"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types All"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​Consolidate"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_6": {
+            "before": {
+              "type": "select",
+              "value": "​Export Mode"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_7": {
+            "before": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      }
+    },
+    "​Export Mode": {
+      "Account-wise Export": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Aggregate Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          }
+        }
+      },
+      "Statistics Report": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Account-wise Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics Report"
+            }
+          }
+        }
+      }
+    },
+    "Export Mode": {
+      "Aggregate Export": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Statistics Report"
+            },
+            "after": {
+              "type": "text",
+              "value": "Aggregate Export"
+            }
+          }
+        }
+      },
+      "Account-wise Export": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Aggregate Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          }
+        }
+      },
+      "Statistics Report": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Account-wise Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics Report"
+            }
+          }
+        }
+      }
+    },
+    "​Data Types All": {
+      "All": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types All"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types"
+            }
+          }
+        }
+      },
+      "Ledger": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            }
+          }
+        }
+      },
+      "PnL Ledger": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            }
+          }
+        }
+      },
+      "Blockchain Records": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            }
+          }
+        }
+      },
+      "Deposit & Withdrawal & Main-sub Transfer & P2P Transfer": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+            }
+          }
+        }
+      }
+    },
+    "Data Types": {
+      "All": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types All"
+            }
+          }
+        }
+      },
+      "Ledger": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types All"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            }
+          }
+        }
+      },
+      "PnL Ledger": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            }
+          }
+        }
+      },
+      "Blockchain Records": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            }
+          }
+        }
+      },
+      "Deposit & Withdrawal & Main-sub Transfer & P2P Transfer": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+            }
+          }
+        }
+      }
+    }
+  },
+  "steps": [
+    {
+      "step_number": 1,
+      "step_name": "01-initial-page",
+      "description": "Initial page load",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "01-initial-page_20260302_181800.png",
+      "timestamp": "20260302_181800",
+      "form_state": {
+        "visible_fields": [],
+        "field_values": {},
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 2,
+      "step_name": "02-form-opened",
+      "description": "New routine report form opened",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "02-form-opened_20260302_181803.png",
+      "timestamp": "20260302_181803",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": ""
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 3,
+      "step_name": "03-field-1-opened",
+      "description": "Opened dropdown: ​Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-1-opened_20260302_181806.png",
+      "timestamp": "20260302_181806",
+      "field_index": 0,
+      "field_label": "​Category",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": ""
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 4,
+      "step_name": "04-field-1-option-1",
+      "description": "Selected 'Live Risk' in ​Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-1-option-1_20260302_181808.png",
+      "timestamp": "20260302_181808",
+      "field_index": 0,
+      "field_label": "​Category",
+      "selected_option": "Live Risk",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Live Risk"
+            }
+          },
+          "Select or Search a Portfolio": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Live Risk"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "Select or Search a Portfolio": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 5,
+      "step_name": "04-field-1-option-2",
+      "description": "Selected 'Bottom Up PnL Analysis' in ​Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-1-option-2_20260302_181812.png",
+      "timestamp": "20260302_181812",
+      "field_index": 0,
+      "field_label": "​Category",
+      "selected_option": "Bottom Up PnL Analysis",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Live Risk"
+            },
+            "after": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Bottom Up PnL Analysis"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "Select or Search a Portfolio": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 6,
+      "step_name": "04-field-1-option-3",
+      "description": "Selected 'Statistics' in ​Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-1-option-3_20260302_181815.png",
+      "timestamp": "20260302_181815",
+      "field_index": 0,
+      "field_label": "​Category",
+      "selected_option": "Statistics",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics"
+            }
+          },
+          "input_3": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Statistics"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 7,
+      "step_name": "04-field-1-option-4",
+      "description": "Selected 'Fund Accounting' in ​Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-1-option-4_20260302_181818.png",
+      "timestamp": "20260302_181818",
+      "field_index": 0,
+      "field_label": "​Category",
+      "selected_option": "Fund Accounting",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Statistics"
+            },
+            "after": {
+              "type": "text",
+              "value": "Fund Accounting"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Fund Accounting"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 8,
+      "step_name": "04-field-1-option-5",
+      "description": "Selected 'History & Ledger' in ​Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-1-option-5_20260302_181822.png",
+      "timestamp": "20260302_181822",
+      "field_index": 0,
+      "field_label": "​Category",
+      "selected_option": "History & Ledger",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Fund Accounting"
+            },
+            "after": {
+              "type": "text",
+              "value": "History & Ledger"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 9,
+      "step_name": "03-field-2-opened",
+      "description": "Opened dropdown: Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-2-opened_20260302_181825.png",
+      "timestamp": "20260302_181825",
+      "field_index": 1,
+      "field_label": "Category",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 10,
+      "step_name": "04-field-2-option-1",
+      "description": "Selected 'Live Risk' in Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-2-option-1_20260302_181827.png",
+      "timestamp": "20260302_181827",
+      "field_index": 1,
+      "field_label": "Category",
+      "selected_option": "Live Risk",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "History & Ledger"
+            },
+            "after": {
+              "type": "text",
+              "value": "Live Risk"
+            }
+          },
+          "Select or Search a Portfolio": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Live Risk"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "Select or Search a Portfolio": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 11,
+      "step_name": "04-field-2-option-2",
+      "description": "Selected 'Bottom Up PnL Analysis' in Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-2-option-2_20260302_181831.png",
+      "timestamp": "20260302_181831",
+      "field_index": 1,
+      "field_label": "Category",
+      "selected_option": "Bottom Up PnL Analysis",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Live Risk"
+            },
+            "after": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Bottom Up PnL Analysis"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "Select or Search a Portfolio": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 12,
+      "step_name": "04-field-2-option-3",
+      "description": "Selected 'Statistics' in Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-2-option-3_20260302_181834.png",
+      "timestamp": "20260302_181834",
+      "field_index": 1,
+      "field_label": "Category",
+      "selected_option": "Statistics",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Bottom Up PnL Analysis"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics"
+            }
+          },
+          "input_3": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Statistics"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 13,
+      "step_name": "04-field-2-option-4",
+      "description": "Selected 'Fund Accounting' in Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-2-option-4_20260302_181837.png",
+      "timestamp": "20260302_181837",
+      "field_index": 1,
+      "field_label": "Category",
+      "selected_option": "Fund Accounting",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Statistics"
+            },
+            "after": {
+              "type": "text",
+              "value": "Fund Accounting"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "Fund Accounting"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 14,
+      "step_name": "04-field-2-option-5",
+      "description": "Selected 'History & Ledger' in Category",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-2-option-5_20260302_181841.png",
+      "timestamp": "20260302_181841",
+      "field_index": 1,
+      "field_label": "Category",
+      "selected_option": "History & Ledger",
+      "detected_changes": {
+        "value_changes": {
+          "input_1": {
+            "before": {
+              "type": "text",
+              "value": "Fund Accounting"
+            },
+            "after": {
+              "type": "text",
+              "value": "History & Ledger"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 15,
+      "step_name": "03-field-3-opened",
+      "description": "Opened dropdown: ​Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-3-opened_20260302_181844.png",
+      "timestamp": "20260302_181844",
+      "field_index": 2,
+      "field_label": "​Contents",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": ""
+          },
+          "input_3": {
+            "type": "text",
+            "value": ""
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 16,
+      "step_name": "04-field-3-option-1",
+      "description": "Selected 'Overview' in ​Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-3-option-1_20260302_181847.png",
+      "timestamp": "20260302_181847",
+      "field_index": 2,
+      "field_label": "​Contents",
+      "selected_option": "Overview",
+      "detected_changes": {
+        "new_fields": [
+          "Volatility Source"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Overview"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Exchange"
+            }
+          },
+          "input_5": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_7": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_9": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_13": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Volatility Source"
+            }
+          },
+          "dropdown_4": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_5": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Volatility Source"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Overview"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Exchange"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "text",
+            "value": ""
+          },
+          "input_9": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Volatility Source"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 17,
+      "step_name": "04-field-3-option-2",
+      "description": "Selected 'Loader File' in ​Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-3-option-2_20260302_181850.png",
+      "timestamp": "20260302_181850",
+      "field_index": 2,
+      "field_label": "​Contents",
+      "selected_option": "Loader File",
+      "detected_changes": {
+        "new_fields": [
+          "Accounting Software",
+          "Export Mode",
+          "Accounting Rule",
+          "Data Types",
+          "Consolidate",
+          "Valuation CCY."
+        ],
+        "hidden_fields": [
+          "Volatility Source"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Overview"
+            },
+            "after": {
+              "type": "text",
+              "value": "Loader File"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Exchange"
+            },
+            "after": {
+              "type": "text",
+              "value": "Paxus"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "IFRS"
+            }
+          },
+          "input_6": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "No Consolidation"
+            }
+          },
+          "input_7": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          },
+          "input_8": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "USD"
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_12": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_14": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_16": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_17": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_20": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Volatility Source"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Software"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Consolidate"
+            }
+          },
+          "dropdown_6": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_7": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            }
+          },
+          "dropdown_8": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_9": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_10": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_11": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Accounting Software",
+          "Accounting Rule",
+          "Data Types",
+          "Consolidate",
+          "Export Mode",
+          "Valuation CCY."
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Loader File"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Paxus"
+          },
+          "input_4": {
+            "type": "text",
+            "value": "IFRS"
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": "No Consolidation"
+          },
+          "input_7": {
+            "type": "text",
+            "value": "Account-wise Export"
+          },
+          "input_8": {
+            "type": "text",
+            "value": "USD"
+          },
+          "input_9": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_14": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "input_17": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_20": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Accounting Software"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Accounting Rule"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​Consolidate"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​Valuation CCY."
+          },
+          "dropdown_8": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_9": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_10": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_11": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 18,
+      "step_name": "04-field-3-option-3",
+      "description": "Selected 'Records' in ​Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-3-option-3_20260302_181854.png",
+      "timestamp": "20260302_181854",
+      "field_index": 2,
+      "field_label": "​Contents",
+      "selected_option": "Records",
+      "detected_changes": {
+        "hidden_fields": [
+          "Accounting Rule",
+          "Consolidate",
+          "Accounting Software",
+          "Valuation CCY."
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Loader File"
+            },
+            "after": {
+              "type": "text",
+              "value": "Records"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Paxus"
+            },
+            "after": {
+              "type": "text",
+              "value": "Aggregate Export"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": "IFRS"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_6": {
+            "before": {
+              "type": "text",
+              "value": "No Consolidation"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_8": {
+            "before": {
+              "type": "text",
+              "value": "USD"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_13": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Software"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types All"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​Consolidate"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_6": {
+            "before": {
+              "type": "select",
+              "value": "​Export Mode"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_7": {
+            "before": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Aggregate Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 19,
+      "step_name": "03-field-4-opened",
+      "description": "Opened dropdown: Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-4-opened_20260302_181857.png",
+      "timestamp": "20260302_181857",
+      "field_index": 3,
+      "field_label": "Contents",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Aggregate Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 20,
+      "step_name": "04-field-4-option-1",
+      "description": "Selected 'Overview' in Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-4-option-1_20260302_181859.png",
+      "timestamp": "20260302_181859",
+      "field_index": 3,
+      "field_label": "Contents",
+      "selected_option": "Overview",
+      "detected_changes": {
+        "new_fields": [
+          "Volatility Source"
+        ],
+        "hidden_fields": [
+          "Export Mode",
+          "Data Types"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Records"
+            },
+            "after": {
+              "type": "text",
+              "value": "Overview"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Aggregate Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Exchange"
+            }
+          },
+          "input_7": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_9": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_13": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Export Mode"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Volatility Source"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types All"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Volatility Source"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Overview"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Exchange"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_7": {
+            "type": "text",
+            "value": ""
+          },
+          "input_9": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Volatility Source"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 21,
+      "step_name": "04-field-4-option-2",
+      "description": "Selected 'Loader File' in Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-4-option-2_20260302_181903.png",
+      "timestamp": "20260302_181903",
+      "field_index": 3,
+      "field_label": "Contents",
+      "selected_option": "Loader File",
+      "detected_changes": {
+        "new_fields": [
+          "Accounting Software",
+          "Export Mode",
+          "Accounting Rule",
+          "Data Types",
+          "Consolidate",
+          "Valuation CCY."
+        ],
+        "hidden_fields": [
+          "Volatility Source"
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Overview"
+            },
+            "after": {
+              "type": "text",
+              "value": "Loader File"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Exchange"
+            },
+            "after": {
+              "type": "text",
+              "value": "Paxus"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "IFRS"
+            }
+          },
+          "input_6": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "No Consolidation"
+            }
+          },
+          "input_7": {
+            "before": {
+              "type": "text",
+              "value": ""
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          },
+          "input_8": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": "USD"
+            }
+          },
+          "input_10": {
+            "before": {
+              "type": "checkbox",
+              "value": true
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_12": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_14": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_16": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_17": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "input_20": {
+            "before": null,
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Volatility Source"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Software"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Consolidate"
+            }
+          },
+          "dropdown_6": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_7": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            }
+          },
+          "dropdown_8": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_9": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_10": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_11": {
+            "before": null,
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Accounting Software",
+          "Accounting Rule",
+          "Data Types",
+          "Consolidate",
+          "Export Mode",
+          "Valuation CCY."
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Loader File"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Paxus"
+          },
+          "input_4": {
+            "type": "text",
+            "value": "IFRS"
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": "No Consolidation"
+          },
+          "input_7": {
+            "type": "text",
+            "value": "Account-wise Export"
+          },
+          "input_8": {
+            "type": "text",
+            "value": "USD"
+          },
+          "input_9": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_14": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "input_17": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_20": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Accounting Software"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Accounting Rule"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​Consolidate"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​Valuation CCY."
+          },
+          "dropdown_8": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_9": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_10": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_11": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 22,
+      "step_name": "04-field-4-option-3",
+      "description": "Selected 'Records' in Contents",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-4-option-3_20260302_181906.png",
+      "timestamp": "20260302_181906",
+      "field_index": 3,
+      "field_label": "Contents",
+      "selected_option": "Records",
+      "detected_changes": {
+        "hidden_fields": [
+          "Accounting Rule",
+          "Consolidate",
+          "Accounting Software",
+          "Valuation CCY."
+        ],
+        "value_changes": {
+          "input_2": {
+            "before": {
+              "type": "text",
+              "value": "Loader File"
+            },
+            "after": {
+              "type": "text",
+              "value": "Records"
+            }
+          },
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Paxus"
+            },
+            "after": {
+              "type": "text",
+              "value": "Aggregate Export"
+            }
+          },
+          "input_4": {
+            "before": {
+              "type": "text",
+              "value": "IFRS"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_6": {
+            "before": {
+              "type": "text",
+              "value": "No Consolidation"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_8": {
+            "before": {
+              "type": "text",
+              "value": "USD"
+            },
+            "after": {
+              "type": "text",
+              "value": ""
+            }
+          },
+          "input_13": {
+            "before": null,
+            "after": {
+              "type": "checkbox",
+              "value": true
+            }
+          },
+          "dropdown_2": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Software"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Export Mode"
+            }
+          },
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Accounting Rule"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types All"
+            }
+          },
+          "dropdown_4": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Spot Trades(FX)  Derivatives Trades(Security)  Other non-Trades Ledger(Transfer/Funding/Earn etc)"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_5": {
+            "before": {
+              "type": "select",
+              "value": "​Consolidate"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_6": {
+            "before": {
+              "type": "select",
+              "value": "​Export Mode"
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          },
+          "dropdown_7": {
+            "before": {
+              "type": "select",
+              "value": "​Valuation CCY."
+            },
+            "after": {
+              "type": "select",
+              "value": "​"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Aggregate Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 23,
+      "step_name": "03-field-5-opened",
+      "description": "Opened dropdown: ​Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-5-opened_20260302_181909.png",
+      "timestamp": "20260302_181909",
+      "field_index": 4,
+      "field_label": "​Export Mode",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Aggregate Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 24,
+      "step_name": "04-field-5-option-1",
+      "description": "Selected 'Aggregate Export' in ​Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-5-option-1_20260302_181912.png",
+      "timestamp": "20260302_181912",
+      "field_index": 4,
+      "field_label": "​Export Mode",
+      "selected_option": "Aggregate Export",
+      "detected_changes": {},
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Aggregate Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 25,
+      "step_name": "04-field-5-option-2",
+      "description": "Selected 'Account-wise Export' in ​Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-5-option-2_20260302_181915.png",
+      "timestamp": "20260302_181915",
+      "field_index": 4,
+      "field_label": "​Export Mode",
+      "selected_option": "Account-wise Export",
+      "detected_changes": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Aggregate Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Account-wise Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 26,
+      "step_name": "04-field-5-option-3",
+      "description": "Selected 'Statistics Report' in ​Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-5-option-3_20260302_181918.png",
+      "timestamp": "20260302_181918",
+      "field_index": 4,
+      "field_label": "​Export Mode",
+      "selected_option": "Statistics Report",
+      "detected_changes": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Account-wise Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics Report"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 27,
+      "step_name": "03-field-6-opened",
+      "description": "Opened dropdown: Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-6-opened_20260302_181921.png",
+      "timestamp": "20260302_181921",
+      "field_index": 5,
+      "field_label": "Export Mode",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 28,
+      "step_name": "04-field-6-option-1",
+      "description": "Selected 'Aggregate Export' in Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-6-option-1_20260302_181924.png",
+      "timestamp": "20260302_181924",
+      "field_index": 5,
+      "field_label": "Export Mode",
+      "selected_option": "Aggregate Export",
+      "detected_changes": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Statistics Report"
+            },
+            "after": {
+              "type": "text",
+              "value": "Aggregate Export"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Aggregate Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 29,
+      "step_name": "04-field-6-option-2",
+      "description": "Selected 'Account-wise Export' in Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-6-option-2_20260302_181927.png",
+      "timestamp": "20260302_181927",
+      "field_index": 5,
+      "field_label": "Export Mode",
+      "selected_option": "Account-wise Export",
+      "detected_changes": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Aggregate Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Account-wise Export"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Account-wise Export"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 30,
+      "step_name": "04-field-6-option-3",
+      "description": "Selected 'Statistics Report' in Export Mode",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-6-option-3_20260302_181930.png",
+      "timestamp": "20260302_181930",
+      "field_index": 5,
+      "field_label": "Export Mode",
+      "selected_option": "Statistics Report",
+      "detected_changes": {
+        "value_changes": {
+          "input_3": {
+            "before": {
+              "type": "text",
+              "value": "Account-wise Export"
+            },
+            "after": {
+              "type": "text",
+              "value": "Statistics Report"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 31,
+      "step_name": "03-field-7-opened",
+      "description": "Opened dropdown: ​Data Types All",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-7-opened_20260302_181933.png",
+      "timestamp": "20260302_181933",
+      "field_index": 6,
+      "field_label": "​Data Types All",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 32,
+      "step_name": "04-field-7-option-1",
+      "description": "Selected 'All' in ​Data Types All",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-7-option-1_20260302_181936.png",
+      "timestamp": "20260302_181936",
+      "field_index": 6,
+      "field_label": "​Data Types All",
+      "selected_option": "All",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types All"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 33,
+      "step_name": "04-field-7-option-2",
+      "description": "Selected 'Ledger' in ​Data Types All",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-7-option-2_20260302_181939.png",
+      "timestamp": "20260302_181939",
+      "field_index": 6,
+      "field_label": "​Data Types All",
+      "selected_option": "Ledger",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 34,
+      "step_name": "04-field-7-option-3",
+      "description": "Selected 'PnL Ledger' in ​Data Types All",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-7-option-3_20260302_181943.png",
+      "timestamp": "20260302_181943",
+      "field_index": 6,
+      "field_label": "​Data Types All",
+      "selected_option": "PnL Ledger",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 35,
+      "step_name": "04-field-7-option-4",
+      "description": "Selected 'Blockchain Records' in ​Data Types All",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-7-option-4_20260302_181946.png",
+      "timestamp": "20260302_181946",
+      "field_index": 6,
+      "field_label": "​Data Types All",
+      "selected_option": "Blockchain Records",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 36,
+      "step_name": "04-field-7-option-5",
+      "description": "Selected 'Deposit & Withdrawal & Main-sub Transfer & P2P Transfer' in ​Data Types All",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-7-option-5_20260302_181950.png",
+      "timestamp": "20260302_181950",
+      "field_index": 6,
+      "field_label": "​Data Types All",
+      "selected_option": "Deposit & Withdrawal & Main-sub Transfer & P2P Transfer",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 37,
+      "step_name": "03-field-8-opened",
+      "description": "Opened dropdown: Data Types",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "03-field-8-opened_20260302_181953.png",
+      "timestamp": "20260302_181953",
+      "field_index": 7,
+      "field_label": "Data Types",
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 38,
+      "step_name": "04-field-8-option-1",
+      "description": "Selected 'All' in Data Types",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-8-option-1_20260302_181956.png",
+      "timestamp": "20260302_181956",
+      "field_index": 7,
+      "field_label": "Data Types",
+      "selected_option": "All",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types All"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types All"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 39,
+      "step_name": "04-field-8-option-2",
+      "description": "Selected 'Ledger' in Data Types",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-8-option-2_20260302_181959.png",
+      "timestamp": "20260302_181959",
+      "field_index": 7,
+      "field_label": "Data Types",
+      "selected_option": "Ledger",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types All"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 40,
+      "step_name": "04-field-8-option-3",
+      "description": "Selected 'PnL Ledger' in Data Types",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-8-option-3_20260302_182003.png",
+      "timestamp": "20260302_182003",
+      "field_index": 7,
+      "field_label": "Data Types",
+      "selected_option": "PnL Ledger",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 41,
+      "step_name": "04-field-8-option-4",
+      "description": "Selected 'Blockchain Records' in Data Types",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-8-option-4_20260302_182006.png",
+      "timestamp": "20260302_182006",
+      "field_index": 7,
+      "field_label": "Data Types",
+      "selected_option": "Blockchain Records",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    },
+    {
+      "step_number": 42,
+      "step_name": "04-field-8-option-5",
+      "description": "Selected 'Deposit & Withdrawal & Main-sub Transfer & P2P Transfer' in Data Types",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "04-field-8-option-5_20260302_182010.png",
+      "timestamp": "20260302_182010",
+      "field_index": 7,
+      "field_label": "Data Types",
+      "selected_option": "Deposit & Withdrawal & Main-sub Transfer & P2P Transfer",
+      "detected_changes": {
+        "value_changes": {
+          "dropdown_3": {
+            "before": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records"
+            },
+            "after": {
+              "type": "select",
+              "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+            }
+          }
+        }
+      },
+      "form_state": {
+        "visible_fields": [
+          "Report Name",
+          "Category",
+          "Contents",
+          "Export Mode",
+          "Data Types"
+        ],
+        "field_values": {
+          "input_0": {
+            "type": "text",
+            "value": ""
+          },
+          "input_1": {
+            "type": "text",
+            "value": "History & Ledger"
+          },
+          "input_2": {
+            "type": "text",
+            "value": "Records"
+          },
+          "input_3": {
+            "type": "text",
+            "value": "Statistics Report"
+          },
+          "input_4": {
+            "type": "text",
+            "value": ""
+          },
+          "input_5": {
+            "type": "text",
+            "value": ""
+          },
+          "input_6": {
+            "type": "text",
+            "value": ""
+          },
+          "Select Date": {
+            "type": "text",
+            "value": ""
+          },
+          "input_8": {
+            "type": "text",
+            "value": ""
+          },
+          "input_10": {
+            "type": "text",
+            "value": ""
+          },
+          "input_12": {
+            "type": "text",
+            "value": ""
+          },
+          "input_13": {
+            "type": "checkbox",
+            "value": true
+          },
+          "Select": {
+            "type": "text",
+            "value": ""
+          },
+          "input_16": {
+            "type": "text",
+            "value": ""
+          },
+          "dropdown_0": {
+            "type": "select",
+            "value": "​Category"
+          },
+          "dropdown_1": {
+            "type": "select",
+            "value": "​Contents"
+          },
+          "dropdown_2": {
+            "type": "select",
+            "value": "​Export Mode"
+          },
+          "dropdown_3": {
+            "type": "select",
+            "value": "​Data Types Ledger  PnL Ledger  Blockchain Records  +1"
+          },
+          "dropdown_4": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_5": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_6": {
+            "type": "select",
+            "value": "​"
+          },
+          "dropdown_7": {
+            "type": "select",
+            "value": "​"
+          }
+        },
+        "dropdown_options": {}
+      }
+    }
+  ]
+}

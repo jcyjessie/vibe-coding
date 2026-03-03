@@ -1,0 +1,506 @@
+{
+  "feature_name": "routine-report-new-form",
+  "capture_date": "2026-03-02T18:07:04.835273",
+  "capture_mode": "automatic_v2_kintsugi_style",
+  "total_steps": 7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_name": "01-initial-page",
+      "description": "Initial page load",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "01-initial-page_20260302_180646.png",
+      "timestamp": "20260302_180646",
+      "buttons": [
+        "V2",
+        "Routine Report Records",
+        "New"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 2,
+      "step_name": "02-new-button-clicked",
+      "description": "Clicked 'New' button - configuration form opened",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "02-new-button-clicked_20260302_180650.png",
+      "timestamp": "20260302_180650",
+      "buttons": [
+        "V2",
+        "Routine Report Records",
+        "New",
+        "Instructions",
+        "Cancel",
+        "Confirm"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select Date",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "checkbox"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​Category"
+        },
+        {
+          "name": "",
+          "text": "​Contents"
+        },
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_name": "02-dialog-dropdown-1",
+      "description": "Dialog dropdown 1 opened",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "02-dialog-dropdown-1_20260302_180654.png",
+      "timestamp": "20260302_180654",
+      "buttons": [
+        "V2",
+        "Routine Report Records",
+        "New",
+        "Instructions",
+        "Cancel",
+        "Confirm"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select Date",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "checkbox"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​Category"
+        },
+        {
+          "name": "",
+          "text": "​Contents"
+        },
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 4,
+      "step_name": "02-dialog-dropdown-2",
+      "description": "Dialog dropdown 2 opened",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "02-dialog-dropdown-2_20260302_180656.png",
+      "timestamp": "20260302_180656",
+      "buttons": [
+        "V2",
+        "Routine Report Records",
+        "New",
+        "Instructions",
+        "Cancel",
+        "Confirm"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select Date",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "checkbox"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​Category"
+        },
+        {
+          "name": "",
+          "text": "​Contents"
+        },
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_name": "02-dialog-dropdown-3",
+      "description": "Dialog dropdown 3 opened",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "02-dialog-dropdown-3_20260302_180658.png",
+      "timestamp": "20260302_180658",
+      "buttons": [
+        "V2",
+        "Routine Report Records",
+        "New",
+        "Instructions",
+        "Cancel",
+        "Confirm"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select Date",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "checkbox"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Select",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​Category"
+        },
+        {
+          "name": "",
+          "text": "​Contents"
+        },
+        {
+          "name": "",
+          "text": "​"
+        },
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 6,
+      "step_name": "02-dropdown-1-open",
+      "description": "Opened dropdown: ​",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/routine",
+      "title": "Routine Report Settings - Reporting - Analysis Report",
+      "screenshot": "02-dropdown-1-open_20260302_180702.png",
+      "timestamp": "20260302_180702",
+      "buttons": [
+        "V2",
+        "Routine Report Records",
+        "New"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_name": "02-select-dropdown-1-open",
+      "description": "Opened select dropdown: Single Portfolio Report",
+      "url": "https://fresh2.cammaster.org/v3/analysis/reporting/single-portfolio",
+      "title": "Single Portfolio Report - Reporting - Analysis Report",
+      "screenshot": "02-select-dropdown-1-open_20260302_180703.png",
+      "timestamp": "20260302_180703",
+      "buttons": [
+        "V2"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "Start Date",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "End date",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "feature_name": "home-share-menu",
+  "capture_date": "2026-03-02T22:57:33.141908",
+  "capture_mode": "automatic_v2_kintsugi_style",
+  "total_steps": 7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_name": "01-initial-page",
+      "description": "Initial page load",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "01-initial-page_20260302_225725.png",
+      "timestamp": "20260302_225725",
+      "buttons": [
+        "V2",
+        "Add Widget"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 2,
+      "step_name": "02-dropdown-1-open",
+      "description": "Opened dropdown: ​",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "02-dropdown-1-open_20260302_225727.png",
+      "timestamp": "20260302_225727",
+      "buttons": [
+        "V2",
+        "Add Widget"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_name": "02-select-dropdown-1-open",
+      "description": "Opened select dropdown: ​",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "02-select-dropdown-1-open_20260302_225729.png",
+      "timestamp": "20260302_225729",
+      "buttons": [
+        "V2",
+        "Add Widget"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 4,
+      "step_name": "02-add-button-1-open",
+      "description": "Opened add button: Add Widget",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "02-add-button-1-open_20260302_225731.png",
+      "timestamp": "20260302_225731",
+      "buttons": [
+        "V2",
+        "Add Widget",
+        "Cancel",
+        "Add"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_name": "03-modal-1",
+      "description": "Modal/Dialog 1",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "03-modal-1_20260302_225731.png",
+      "timestamp": "20260302_225731",
+      "buttons": [
+        "V2",
+        "Add Widget",
+        "Cancel",
+        "Add"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 6,
+      "step_name": "03-modal-1",
+      "description": "Modal/Dialog 1",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "03-modal-1_20260302_225732.png",
+      "timestamp": "20260302_225732",
+      "buttons": [
+        "V2",
+        "Add Widget",
+        "Cancel",
+        "Add"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_name": "03-modal-2",
+      "description": "Modal/Dialog 2",
+      "url": "https://fresh2.cammaster.org/v3/home/?tab=default-b4",
+      "title": "Home",
+      "screenshot": "03-modal-2_20260302_225732.png",
+      "timestamp": "20260302_225732",
+      "buttons": [
+        "V2",
+        "Add Widget",
+        "Cancel",
+        "Add"
+      ],
+      "input_fields": [
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        },
+        {
+          "placeholder": "",
+          "name": "",
+          "type": "text"
+        }
+      ],
+      "dropdowns": [
+        {
+          "name": "",
+          "text": "​"
+        }
+      ]
+    }
+  ]
+}

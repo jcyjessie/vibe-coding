@@ -237,3 +237,86 @@ def test_stratified_sampling():
     assert 19 in sampled  # Last
     assert any(5 <= x <= 14 for x in sampled)  # Middle range
 
+
+def test_stratified_sampling_sample_size_zero():
+    """Test that sample_size=0 returns empty list"""
+    explorer = FieldDependencyExplorer()
+
+    options = list(range(10))
+    sampled = explorer._stratified_sample(options, sample_size=0)
+
+    assert len(sampled) == 0
+    assert sampled == []
+
+
+def test_stratified_sampling_sample_size_one():
+    """Test that sample_size=1 returns only first item"""
+    explorer = FieldDependencyExplorer()
+
+    options = list(range(10))
+    sampled = explorer._stratified_sample(options, sample_size=1)
+
+    assert len(sampled) == 1
+    assert sampled == [0]
+
+
+def test_stratified_sampling_empty_list():
+    """Test that empty list returns empty list"""
+    explorer = FieldDependencyExplorer()
+
+    sampled = explorer._stratified_sample([], sample_size=5)
+
+    assert len(sampled) == 0
+    assert sampled == []
+
+
+def test_stratified_sampling_negative_sample_size():
+    """Test that negative sample_size raises ValueError"""
+    explorer = FieldDependencyExplorer()
+
+    options = list(range(10))
+
+    with pytest.raises(ValueError, match="sample_size must be non-negative"):
+        explorer._stratified_sample(options, sample_size=-1)
+
+
+def test_stratified_sampling_exact_count():
+    """Test that exactly sample_size items are returned"""
+    explorer = FieldDependencyExplorer()
+
+    # Test various combinations
+    test_cases = [
+        (list(range(100)), 10),
+        (list(range(50)), 7),
+        (list(range(30)), 5),
+        (list(range(15)), 3),
+    ]
+
+    for options, sample_size in test_cases:
+        sampled = explorer._stratified_sample(options, sample_size)
+        assert len(sampled) == sample_size, f"Expected {sample_size} items, got {len(sampled)}"
+        # Verify no duplicates
+        assert len(sampled) == len(set(sampled)), "Sampled list contains duplicates"
+
+
+def test_stratified_sampling_sample_size_equals_list_length():
+    """Test that when sample_size equals list length, all items are returned"""
+    explorer = FieldDependencyExplorer()
+
+    options = list(range(10))
+    sampled = explorer._stratified_sample(options, sample_size=10)
+
+    assert len(sampled) == 10
+    assert sampled == options
+
+
+def test_stratified_sampling_sample_size_greater_than_list_length():
+    """Test that when sample_size > list length, all items are returned"""
+    explorer = FieldDependencyExplorer()
+
+    options = list(range(5))
+    sampled = explorer._stratified_sample(options, sample_size=10)
+
+    assert len(sampled) == 5
+    assert sampled == options
+

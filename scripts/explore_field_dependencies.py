@@ -233,27 +233,64 @@ class FieldDependencyExplorer:
 
         Args:
             items: List of items to sample from
-            sample_size: Number of items to sample
+            sample_size: Number of items to sample (must be >= 0)
 
         Returns:
-            List of sampled items
+            List of sampled items (exactly sample_size items, or all items if fewer available)
+
+        Raises:
+            ValueError: If sample_size is negative
+
+        Edge cases:
+            - sample_size=0: returns empty list
+            - sample_size=1: returns first item only
+            - empty list: returns empty list
+            - sample_size >= len(items): returns all items
         """
+        # 输入验证
+        if sample_size < 0:
+            raise ValueError(f"sample_size must be non-negative, got {sample_size}")
+
+        # 边界情况处理
+        if sample_size == 0 or len(items) == 0:
+            return []
+
+        if sample_size == 1:
+            return [items[0]]
+
         if len(items) <= sample_size:
             return items
 
-        # Always include first and last
-        sampled = [items[0], items[-1]]
+        # 使用集合跟踪索引以避免重复
+        indices = set()
+
+        # 总是包含第一个和最后一个
+        indices.add(0)
+        indices.add(len(items) - 1)
+
+        # 从中间均匀采样
         remaining_slots = sample_size - 2
-
         if remaining_slots > 0:
-            # Sample evenly from the middle
-            step = len(items) // (remaining_slots + 1)
+            # 计算步长以均匀分布
+            step = (len(items) - 1) / (remaining_slots + 1)
             for i in range(1, remaining_slots + 1):
-                idx = min(i * step, len(items) - 2)
-                if items[idx] not in sampled:
-                    sampled.append(items[idx])
+                idx = int(i * step)
+                indices.add(idx)
 
-        return sampled
+        # 如果由于重复导致索引不足，从剩余位置补充
+        if len(indices) < sample_size:
+            available = set(range(len(items))) - indices
+            needed = sample_size - len(indices)
+            # 均匀选择剩余位置
+            available_list = sorted(available)
+            step = len(available_list) / needed if needed > 0 else 0
+            for i in range(needed):
+                idx = int(i * step)
+                if idx < len(available_list):
+                    indices.add(available_list[idx])
+
+        # 按原始顺序返回采样项
+        return [items[i] for i in sorted(indices)]
 
     def explore_dependencies(self, target_url: str):
         """Systematically explore field dependencies"""

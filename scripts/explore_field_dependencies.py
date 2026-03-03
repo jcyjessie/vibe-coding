@@ -26,6 +26,20 @@ except ImportError:
     print("Install it with: pip install playwright && playwright install chromium")
     sys.exit(1)
 
+from enum import Enum
+
+
+class ChangeType(Enum):
+    """Semantic types of state changes for better interpretability"""
+    URL_CHANGE = "url_change"
+    DIALOG_OPENED = "dialog_opened"
+    DIALOG_CLOSED = "dialog_closed"
+    FIELD_ADDED = "field_added"
+    FIELD_REMOVED = "field_removed"
+    FIELD_MODIFIED = "field_modified"
+    OPTIONS_CHANGED = "options_changed"
+    VALIDATION_ERROR = "validation_error"
+
 
 class FieldDependencyExplorer:
     def __init__(self, auth_file=".auth/state.json", output_dir="captured_data"):
@@ -533,40 +547,89 @@ class FieldDependencyExplorer:
 
     def _compare_states(self, baseline_state: dict, current_state: dict) -> dict:
         """
-        Compare current state against baseline to detect changes.
+        Compare current state against baseline to detect changes with semantic types.
 
         Args:
             baseline_state: The initial state before any actions
             current_state: The state after an action
 
         Returns:
-            Dictionary of fields that changed from baseline
+            Dictionary of fields that changed from baseline with semantic change_type
         """
         changes = {}
 
+        # Check for URL change
+        if baseline_state.get("url") != current_state.get("url"):
+            changes["url"] = {
+                "change_type": ChangeType.URL_CHANGE.value,
+                "baseline": baseline_state.get("url"),
+                "current": current_state.get("url")
+            }
+
         # Check for new or changed fields
         for field_id, current_props in current_state.items():
+            if field_id == "url":
+                continue  # Already handled
+
             if field_id not in baseline_state:
+                # Classify as dialog opened if multiple fields with "dialog" appear
+                if self._is_dialog_field(field_id, current_state):
+                    change_type = ChangeType.DIALOG_OPENED.value
+                else:
+                    change_type = ChangeType.FIELD_ADDED.value
+
                 changes[field_id] = {
-                    "change_type": "appeared",
+                    "change_type": change_type,
                     "current": current_props
                 }
             elif baseline_state[field_id] != current_props:
+                # Determine if it's options change or field modification
+                if self._is_options_change(baseline_state[field_id], current_props):
+                    change_type = ChangeType.OPTIONS_CHANGED.value
+                elif self._is_validation_error(current_props):
+                    change_type = ChangeType.VALIDATION_ERROR.value
+                else:
+                    change_type = ChangeType.FIELD_MODIFIED.value
+
                 changes[field_id] = {
-                    "change_type": "modified",
+                    "change_type": change_type,
                     "baseline": baseline_state[field_id],
                     "current": current_props
                 }
 
         # Check for removed fields
         for field_id in baseline_state:
+            if field_id == "url":
+                continue
+
             if field_id not in current_state:
+                # Classify as dialog closed if multiple fields with "dialog" disappear
+                if self._is_dialog_field(field_id, baseline_state):
+                    change_type = ChangeType.DIALOG_CLOSED.value
+                else:
+                    change_type = ChangeType.FIELD_REMOVED.value
+
                 changes[field_id] = {
-                    "change_type": "disappeared",
+                    "change_type": change_type,
                     "baseline": baseline_state[field_id]
                 }
 
         return changes
+
+    def _is_dialog_field(self, field_id: str, state: dict) -> bool:
+        """Check if field is part of a dialog based on naming patterns"""
+        dialog_keywords = ["dialog", "modal", "popup", "overlay"]
+        return any(keyword in field_id.lower() for keyword in dialog_keywords)
+
+    def _is_options_change(self, baseline_props: dict, current_props: dict) -> bool:
+        """Check if change is specifically about dropdown options"""
+        return ("options" in baseline_props and "options" in current_props and
+                baseline_props.get("options") != current_props.get("options"))
+
+    def _is_validation_error(self, props: dict) -> bool:
+        """Check if field shows validation error"""
+        error_indicators = ["error", "invalid", "required"]
+        return any(indicator in str(props).lower() for indicator in error_indicators)
 
     def save_results(self, feature_name="feature"):
         """Save captured data and dependencies to JSON files"""

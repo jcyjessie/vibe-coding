@@ -355,3 +355,58 @@ def test_full_exploration_workflow():
     assert isinstance(explorer.captured_steps, list)
     assert isinstance(explorer.field_dependencies, dict)
 
+
+def test_classify_change_type_url_change():
+    """Test that URL changes are correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"url": "https://example.com/page1"}
+    current = {"url": "https://example.com/page2"}
+
+    changes = explorer._compare_states(baseline, current)
+    assert changes["url"]["change_type"] == ChangeType.URL_CHANGE.value
+
+
+def test_classify_change_type_dialog_opened():
+    """Test that dialog opening is correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    # Simulate individual dialog fields appearing (not as a list)
+    baseline = {"field1": {"visible": True}}
+    current = {"field1": {"visible": True}, "dialog_title": {"visible": True}, "dialog_content": {"visible": True}}
+
+    changes = explorer._compare_states(baseline, current)
+    # Dialog detected when fields with "dialog" in their name appear
+    assert "dialog_title" in changes
+    assert changes["dialog_title"]["change_type"] == ChangeType.DIALOG_OPENED.value
+
+
+def test_classify_change_type_field_added():
+    """Test that field additions are correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"field_a": {"visible": True}}
+    current = {"field_a": {"visible": True}, "field_b": {"visible": True}}
+
+    changes = explorer._compare_states(baseline, current)
+    assert changes["field_b"]["change_type"] == ChangeType.FIELD_ADDED.value
+
+
+def test_classify_change_type_options_changed():
+    """Test that dropdown option changes are correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"dropdown": {"options": ["A", "B"]}}
+    current = {"dropdown": {"options": ["A", "B", "C"]}}
+
+    changes = explorer._compare_states(baseline, current)
+    assert changes["dropdown"]["change_type"] == ChangeType.OPTIONS_CHANGED.value
+

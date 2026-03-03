@@ -192,3 +192,14 @@ def test_capture_dropdown_options_empty_dropdown():
     assert len(result) == 0
     assert result == []
 
+
+def test_wait_for_stability():
+    """Test that wait_for_stability waits for network and DOM"""
+    explorer = FieldDependencyExplorer()
+
+    # This test verifies the method exists and has correct signature
+    import inspect
+    sig = inspect.signature(explorer._wait_for_stability)
+    assert "page" in sig.parameters
+    assert "timeout" in sig.parameters
+

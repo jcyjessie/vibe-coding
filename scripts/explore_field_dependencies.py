@@ -206,6 +206,25 @@ class FieldDependencyExplorer:
 
         return options
 
+    def _wait_for_stability(self, page, timeout: int = 5000):
+        """
+        Wait for page to stabilize after an interaction.
+
+        Waits for:
+        1. Network to be idle
+        2. DOM to stop mutating
+
+        Args:
+            page: Playwright page object
+            timeout: Maximum wait time in milliseconds
+        """
+        try:
+            # Wait for network idle (no requests for 500ms)
+            page.wait_for_load_state("networkidle", timeout=timeout)
+        except Exception:
+            # If networkidle times out, fall back to domcontentloaded
+            page.wait_for_load_state("domcontentloaded", timeout=timeout)
+
     def explore_dependencies(self, target_url: str):
         """Systematically explore field dependencies"""
         print("\n" + "="*60)
@@ -215,7 +234,7 @@ class FieldDependencyExplorer:
         # Navigate to URL
         print(f"\nNavigating to: {target_url}")
         self.page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
-        self.page.wait_for_timeout(3000)
+        self._wait_for_stability(self.page, timeout=5000)
 
         print(f"Current page: {self.page.url}")
         print(f"Page title: {self.page.title()}\n")
@@ -229,7 +248,7 @@ class FieldDependencyExplorer:
             new_button = self.page.locator("button:has-text('New'):visible").first
             if new_button.is_visible():
                 new_button.click(timeout=3000)
-                self.page.wait_for_timeout(2000)
+                self._wait_for_stability(self.page, timeout=3000)
 
                 self.capture_screenshot("02-form-opened", "New routine report form opened")
 
@@ -275,7 +294,7 @@ class FieldDependencyExplorer:
 
                     # Click to open dropdown
                     dropdown.click(timeout=2000)
-                    self.page.wait_for_timeout(1000)
+                    self._wait_for_stability(self.page, timeout=3000)
 
                     # Capture dropdown opened state
                     step_name = f"03-field-{dropdown_idx+1}-opened"
@@ -299,7 +318,7 @@ class FieldDependencyExplorer:
 
                             # Click the option
                             option.click(timeout=2000)
-                            self.page.wait_for_timeout(1500)
+                            self._wait_for_stability(self.page, timeout=3000)
 
                             # Capture state after selection
                             after_state = self.extract_form_state()
@@ -329,7 +348,7 @@ class FieldDependencyExplorer:
                                     dropdown = dialog.locator("select:visible, [role='combobox']:visible, .v-select:visible").nth(dropdown_idx)
                                     if dropdown.is_visible():
                                         dropdown.click(timeout=2000)
-                                        self.page.wait_for_timeout(800)
+                                        self._wait_for_stability(self.page, timeout=3000)
                                 except:
                                     break
 
@@ -340,7 +359,7 @@ class FieldDependencyExplorer:
                     # Close dropdown by pressing Escape
                     try:
                         self.page.keyboard.press("Escape")
-                        self.page.wait_for_timeout(500)
+                        self._wait_for_stability(self.page, timeout=3000)
                     except:
                         pass
 

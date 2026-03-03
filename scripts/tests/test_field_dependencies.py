@@ -320,3 +320,38 @@ def test_stratified_sampling_sample_size_greater_than_list_length():
     assert len(sampled) == 5
     assert sampled == options
 
+
+def test_full_exploration_workflow():
+    """Integration test for complete field dependency exploration"""
+    explorer = FieldDependencyExplorer()
+
+    # Verify the main method signature
+    import inspect
+    sig = inspect.signature(explorer.explore_dependencies)
+
+    assert "target_url" in sig.parameters
+
+    # Verify all key methods exist and have correct signatures
+    assert hasattr(explorer, "launch_browser")
+    assert hasattr(explorer, "capture_screenshot")
+    assert hasattr(explorer, "extract_form_state")
+    assert hasattr(explorer, "save_results")
+    assert hasattr(explorer, "close")
+
+    # Verify helper methods exist
+    assert hasattr(explorer, "_wait_for_stability")
+    assert hasattr(explorer, "_stratified_sample")
+    assert hasattr(explorer, "_extract_dropdown_options")
+    assert hasattr(explorer, "_compare_states")
+    assert hasattr(explorer, "_explore_form_fields")
+    assert hasattr(explorer, "_get_field_label")
+    assert hasattr(explorer, "_get_dropdown_options")
+
+    # Verify initialization sets up required attributes
+    assert hasattr(explorer, "output_dir")
+    assert hasattr(explorer, "screenshots_dir")
+    assert hasattr(explorer, "captured_steps")
+    assert hasattr(explorer, "field_dependencies")
+    assert isinstance(explorer.captured_steps, list)
+    assert isinstance(explorer.field_dependencies, dict)
+

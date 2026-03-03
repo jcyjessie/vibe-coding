@@ -131,3 +131,47 @@ python browse_cam.py --port 9223
 ```bash
 python explore_field_dependencies.py --url <form-url> --output-dir <output-path>
 ```
+
+## Field Dependencies Explorer V3 Improvements
+
+**New in V3:**
+
+1. **Structured State Changes**: Changes are now classified with semantic types for better interpretability:
+   - `url_change`: Page navigation
+   - `dialog_opened/closed`: Modal/dialog state changes
+   - `field_added/removed`: Form field visibility changes
+   - `field_modified`: Field value or property changes
+   - `options_changed`: Dropdown option list changes
+   - `validation_error`: Validation error appearance
+
+2. **Global Exploration Budget**: Hard limits prevent exploration time explosion:
+   - `max_steps`: Maximum interaction steps (default: 100)
+   - `max_states`: Maximum unique states to visit (default: 50)
+   - `max_time_seconds`: Maximum execution time (default: 300s)
+   - `max_retries_per_action`: Retry limit per action (default: 3)
+
+3. **Login Strong Signal Validation**: Multi-strategy login verification:
+   - Home selector check (stable UI elements)
+   - API endpoint verification (authenticated call)
+   - Combined mode (both must pass)
+
+**Usage with Budget Control:**
+
+```bash
+python explore_field_dependencies.py --url <url> --max-steps 50 --max-time 180
+```
+
+**Programmatic Usage:**
+
+```python
+from explore_field_dependencies import FieldDependencyExplorer, ExplorationBudget
+
+budget = ExplorationBudget(
+    max_steps=50,
+    max_states=30,
+    max_time_seconds=180
+)
+
+explorer = FieldDependencyExplorer(budget=budget)
+explorer.explore_dependencies(url)
+```

@@ -36,6 +36,109 @@ except ImportError:
     sys.exit(1)
 
 from retry_handler import RetryHandler, RetryableError
+from dataclasses import dataclass
+from typing import List, Optional
+
+
+@dataclass
+class LoginValidator:
+    """
+    Strong signal validation for login success.
+
+    Provides multiple validation strategies:
+    1. Home selector check (wait for stable UI element)
+    2. API endpoint check (verify authenticated API call)
+    3. Combined (both must pass)
+    """
+    home_selectors: List[str] = None
+    api_endpoint: Optional[str] = None
+    expected_status: int = 200
+    require_both: bool = False
+    timeout: int = 10000  # 10 seconds
+
+    def __post_init__(self):
+        if self.home_selectors is None:
+            self.home_selectors = [
+                ".user-menu",
+                "[data-testid='user-profile']",
+                ".account-dropdown"
+            ]
+
+        if self.require_both and not self.api_endpoint:
+            raise ValueError("require_both=True requires api_endpoint to be set")
+
+    @property
+    def validation_strategy(self) -> str:
+        """Get current validation strategy"""
+        if self.require_both:
+            return "combined"
+        elif self.api_endpoint:
+            return "api_primary"
+        else:
+            return "selector_only"
+
+    def verify_login_success(self, page) -> bool:
+        """
+        Verify login success using configured strategy.
+
+        Args:
+            page: Playwright page object
+
+        Returns:
+            True if login verified, False otherwise
+        """
+        selector_valid = self._check_home_selectors(page)
+
+        if self.api_endpoint:
+            api_valid = self.verify_login_via_api(page)
+
+            if self.require_both:
+                return selector_valid and api_valid
+            else:
+                # API check is primary, selector is fallback
+                return api_valid or selector_valid
+
+        return selector_valid
+
+    def _check_home_selectors(self, page) -> bool:
+        """Check if any home selector is visible"""
+        for selector in self.home_selectors:
+            try:
+                locator = page.locator(selector)
+                if locator.is_visible(timeout=self.timeout):
+                    print(f"✓ Login verified: found home selector '{selector}'")
+                    return True
+            except Exception as e:
+                print(f"  Selector '{selector}' not found: {e}")
+                continue
+
+        print("✗ Login verification failed: no home selectors found")
+        return False
+
+    def verify_login_via_api(self, page) -> bool:
+        """
+        Verify login by calling authenticated API endpoint.
+
+        Args:
+            page: Playwright page object
+
+        Returns:
+            True if API returns expected status, False otherwise
+        """
+        try:
+            # Make API request using page context (includes cookies)
+            response = page.request.get(self.api_endpoint)
+
+            if response.status == self.expected_status:
+                print(f"✓ Login verified: API {self.api_endpoint} returned {response.status}")
+                return True
+            else:
+                print(f"✗ API check failed: expected {self.expected_status}, got {response.status}")
+                return False
+
+        except Exception as e:
+            print(f"✗ API check failed: {e}")
+            return False
 
 
 def auto_login(

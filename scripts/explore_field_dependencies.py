@@ -27,6 +27,8 @@ except ImportError:
     sys.exit(1)
 
 from enum import Enum
+from dataclasses import dataclass, field
+from time import time
 
 
 class ChangeType(Enum):
@@ -41,11 +43,80 @@ class ChangeType(Enum):
     VALIDATION_ERROR = "validation_error"
 
 
+@dataclass
+class ExplorationBudget:
+    """
+    Global budget control to prevent exploration time explosion.
+
+    Provides hard limits on:
+    - Total steps taken
+    - Unique states visited
+    - Total execution time
+    - Retries per action
+    """
+    max_steps: int = 100
+    max_states: int = 50
+    max_time_seconds: int = 300  # 5 minutes
+    max_retries_per_action: int = 3
+
+    # Internal tracking
+    steps_taken: int = field(default=0, init=False)
+    visited_states: set = field(default_factory=set, init=False)
+    retry_counts: dict = field(default_factory=dict, init=False)
+    start_time: float = field(default_factory=time, init=False)
+
+    def can_continue_steps(self) -> bool:
+        """Check if we can take more steps"""
+        return self.steps_taken < self.max_steps
+
+    def can_continue_states(self) -> bool:
+        """Check if we can visit more states"""
+        return len(self.visited_states) < self.max_states
+
+    def can_continue_time(self) -> bool:
+        """Check if we have time remaining"""
+        elapsed = time() - self.start_time
+        return elapsed < self.max_time_seconds
+
+    def can_continue(self) -> bool:
+        """Check if exploration can continue (all budgets)"""
+        return (self.can_continue_steps() and
+                self.can_continue_states() and
+                self.can_continue_time())
+
+    def increment_steps(self):
+        """Increment step counter"""
+        self.steps_taken += 1
+
+    def record_state(self, state_fingerprint: str):
+        """Record a visited state"""
+        self.visited_states.add(state_fingerprint)
+
+    def can_retry(self, action_id: str) -> bool:
+        """Check if action can be retried"""
+        return self.retry_counts.get(action_id, 0) < self.max_retries_per_action
+
+    def increment_retries(self, action_id: str):
+        """Increment retry counter for action"""
+        self.retry_counts[action_id] = self.retry_counts.get(action_id, 0) + 1
+
+    def get_status(self) -> dict:
+        """Get current budget status"""
+        elapsed = time() - self.start_time
+        return {
+            "steps": f"{self.steps_taken}/{self.max_steps}",
+            "states": f"{len(self.visited_states)}/{self.max_states}",
+            "time": f"{elapsed:.1f}s/{self.max_time_seconds}s",
+            "can_continue": self.can_continue()
+        }
+
+
 class FieldDependencyExplorer:
     # Minimum number of dialog-related fields required to classify as dialog opened/closed
     MIN_DIALOG_FIELDS_THRESHOLD = 2
 
-    def __init__(self, auth_file=".auth/state.json", output_dir="captured_data"):
+    def __init__(self, auth_file=".auth/state.json", output_dir="captured_data",
+                 budget: ExplorationBudget = None):
         self.auth_file = Path(auth_file)
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
@@ -60,6 +131,9 @@ class FieldDependencyExplorer:
         self.captured_steps = []
         self.step_counter = 1
         self.field_dependencies = {}
+
+        # Budget control
+        self.budget = budget or ExplorationBudget()
 
     def launch_browser(self):
         """Launch Chrome with storageState"""
@@ -350,7 +424,7 @@ class FieldDependencyExplorer:
         return self.captured_steps
 
     def _explore_form_fields(self):
-        """Systematically explore each form field and its dependencies"""
+        """Systematically explore each form field and its dependencies with budget control"""
         print("\n[Step 3] Exploring form field dependencies...")
 
         try:
@@ -361,6 +435,8 @@ class FieldDependencyExplorer:
 
             # Capture baseline state before any interactions
             baseline_state = self.extract_form_state()
+            state_fingerprint = json.dumps(baseline_state, sort_keys=True)
+            self.budget.record_state(state_fingerprint)
 
             # Find all dropdowns/selects in the dialog
             dropdowns = dialog.locator("select:visible, [role='combobox']:visible, .v-select:visible").all()
@@ -368,13 +444,21 @@ class FieldDependencyExplorer:
             print(f"  Found {len(dropdowns)} dropdown field(s)")
 
             for dropdown_idx, dropdown in enumerate(dropdowns):
+                # Check budget before exploring each field
+                if not self.budget.can_continue():
+                    print(f"\n⚠️  Budget exhausted: {self.budget.get_status()}")
+                    break
+
                 try:
                     if not dropdown.is_visible():
                         continue
 
+                    self.budget.increment_steps()
+
                     # Get field label/identifier
                     field_label = self._get_field_label(dropdown, dropdown_idx)
-                    print(f"\n  [Field {dropdown_idx + 1}] Exploring: {field_label}")
+                    print(f"\n  [Field {dropdown_idx + 1}] Exploring: {field_label} (Step {self.budget.steps_taken})")
+                    print(f"  Budget status: {self.budget.get_status()}")
 
                     # Click to open dropdown
                     dropdown.click(timeout=2000)
@@ -409,6 +493,10 @@ class FieldDependencyExplorer:
 
                             # Capture state after selection
                             after_state = self.extract_form_state()
+
+                            # Record state after interaction
+                            state_fingerprint = json.dumps(after_state, sort_keys=True)
+                            self.budget.record_state(state_fingerprint)
 
                             # Compare with baseline state (not chain)
                             changes = self._compare_states(baseline_state, after_state)

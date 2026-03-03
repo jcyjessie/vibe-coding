@@ -462,3 +462,60 @@ def test_classify_change_type_validation_error():
     changes = explorer._compare_states(baseline, current)
     assert changes["field_a"]["change_type"] == ChangeType.VALIDATION_ERROR.value
 
+
+def test_exploration_budget_max_steps():
+    """Test that exploration stops at max_steps"""
+    from explore_field_dependencies import ExplorationBudget
+
+    budget = ExplorationBudget(max_steps=5)
+
+    assert budget.can_continue_steps() == True
+
+    for i in range(5):
+        budget.increment_steps()
+
+    assert budget.can_continue_steps() == False
+    assert budget.steps_taken == 5
+
+
+def test_exploration_budget_max_states():
+    """Test that exploration stops at max_states"""
+    from explore_field_dependencies import ExplorationBudget
+
+    budget = ExplorationBudget(max_states=3)
+
+    budget.record_state("state1")
+    budget.record_state("state2")
+    budget.record_state("state3")
+
+    assert budget.can_continue_states() == False
+    assert len(budget.visited_states) == 3
+
+
+def test_exploration_budget_max_time():
+    """Test that exploration stops after max_time"""
+    import time
+    from explore_field_dependencies import ExplorationBudget
+
+    budget = ExplorationBudget(max_time_seconds=1)
+
+    assert budget.can_continue_time() == True
+    time.sleep(1.1)
+    assert budget.can_continue_time() == False
+
+
+def test_exploration_budget_max_retries():
+    """Test that retries are limited per action"""
+    from explore_field_dependencies import ExplorationBudget
+
+    budget = ExplorationBudget(max_retries_per_action=3)
+
+    action_id = "click_button"
+    assert budget.can_retry(action_id) == True
+
+    for i in range(3):
+        budget.increment_retries(action_id)
+
+    assert budget.can_retry(action_id) == False
+
+

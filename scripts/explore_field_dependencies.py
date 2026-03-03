@@ -227,6 +227,34 @@ class FieldDependencyExplorer:
             # If networkidle times out, fall back to domcontentloaded
             page.wait_for_load_state("domcontentloaded", timeout=timeout)
 
+    def _stratified_sample(self, items: list, sample_size: int) -> list:
+        """
+        Sample items using stratified approach to cover beginning, middle, end.
+
+        Args:
+            items: List of items to sample from
+            sample_size: Number of items to sample
+
+        Returns:
+            List of sampled items
+        """
+        if len(items) <= sample_size:
+            return items
+
+        # Always include first and last
+        sampled = [items[0], items[-1]]
+        remaining_slots = sample_size - 2
+
+        if remaining_slots > 0:
+            # Sample evenly from the middle
+            step = len(items) // (remaining_slots + 1)
+            for i in range(1, remaining_slots + 1):
+                idx = min(i * step, len(items) - 2)
+                if items[idx] not in sampled:
+                    sampled.append(items[idx])
+
+        return sampled
+
     def explore_dependencies(self, target_url: str):
         """Systematically explore field dependencies"""
         print("\n" + "="*60)
@@ -310,7 +338,10 @@ class FieldDependencyExplorer:
                     options = self._get_dropdown_options()
                     print(f"    Found {len(options)} option(s)")
 
-                    for option_idx, option in enumerate(options[:5]):  # Limit to first 5 options
+                    # Use stratified sampling to cover beginning, middle, end
+                    options_to_try = self._stratified_sample(options, sample_size=5)
+
+                    for option_idx, option in enumerate(options_to_try):
                         try:
                             option_text = option.text_content().strip()
                             if not option_text or option_text in ["", "​"]:

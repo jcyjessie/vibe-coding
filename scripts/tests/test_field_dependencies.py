@@ -223,3 +223,17 @@ def test_error_handling_specificity():
     # Should have no bare except blocks
     assert len(bare_excepts) == 0, f"Found bare except at lines: {bare_excepts}"
 
+
+def test_stratified_sampling():
+    """Test that sampling covers beginning, middle, and end"""
+    explorer = FieldDependencyExplorer()
+
+    # Test with 20 options, sample 5
+    options = list(range(20))
+    sampled = explorer._stratified_sample(options, sample_size=5)
+
+    assert len(sampled) == 5
+    assert 0 in sampled  # First
+    assert 19 in sampled  # Last
+    assert any(5 <= x <= 14 for x in sampled)  # Middle range
+

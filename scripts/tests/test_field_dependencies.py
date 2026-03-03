@@ -544,4 +544,26 @@ def test_exploration_budget_integration():
     assert not explorer.budget.can_continue()
 
 
+def test_v3_integration():
+    """Integration test for v3 features: structured changes + budget + validation"""
+    from explore_field_dependencies import ExplorationBudget, FieldDependencyExplorer, ChangeType
+
+    # Test that all v3 components work together
+    budget = ExplorationBudget(max_steps=10, max_states=5, max_time_seconds=60)
+    explorer = FieldDependencyExplorer(budget=budget)
+
+    # Verify budget is initialized
+    assert explorer.budget.max_steps == 10
+    assert explorer.budget.can_continue()
+
+    # Verify ChangeType enum is available
+    assert hasattr(explorer, '_compare_states')
+    assert ChangeType.URL_CHANGE.value == "url_change"
+
+    # Verify LoginValidator is available
+    from auto_login_cam_v3 import LoginValidator
+    validator = LoginValidator()
+    assert validator.validation_strategy in ["selector_only", "api_primary", "combined"]
+
+
 

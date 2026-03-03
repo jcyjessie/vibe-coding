@@ -203,3 +203,23 @@ def test_wait_for_stability():
     assert "page" in sig.parameters
     assert "timeout" in sig.parameters
 
+
+def test_error_handling_specificity():
+    """Test that errors are caught specifically, not with bare except"""
+    import ast
+    import inspect
+
+    # Read the source code
+    source = inspect.getsource(FieldDependencyExplorer)
+    tree = ast.parse(source)
+
+    # Find all except handlers
+    bare_excepts = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ExceptHandler):
+            if node.type is None:  # Bare except
+                bare_excepts.append(node.lineno)
+
+    # Should have no bare except blocks
+    assert len(bare_excepts) == 0, f"Found bare except at lines: {bare_excepts}"
+

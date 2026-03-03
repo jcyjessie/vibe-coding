@@ -132,7 +132,8 @@ class FieldDependencyExplorer:
                     label_text = label.text_content().strip()
                     if label_text:
                         form_state["visible_fields"].append(label_text)
-                except:
+                except Exception as e:
+                    # Skip labels that can't be read (stale elements, etc.)
                     continue
 
             # Extract input field values
@@ -148,7 +149,8 @@ class FieldDependencyExplorer:
                         "type": field_type,
                         "value": value
                     }
-                except:
+                except Exception as e:
+                    # Skip inputs that can't be read (stale elements, etc.)
                     continue
 
             # Extract select/dropdown current values
@@ -349,7 +351,8 @@ class FieldDependencyExplorer:
                                     if dropdown.is_visible():
                                         dropdown.click(timeout=2000)
                                         self._wait_for_stability(self.page, timeout=3000)
-                                except:
+                                except Exception as e:
+                                    # Can't reopen dropdown, stop testing this field
                                     break
 
                         except Exception as e:
@@ -360,7 +363,8 @@ class FieldDependencyExplorer:
                     try:
                         self.page.keyboard.press("Escape")
                         self._wait_for_stability(self.page, timeout=3000)
-                    except:
+                    except Exception as e:
+                        # Escape key didn't work, dropdown may already be closed
                         pass
 
                 except Exception as e:
@@ -390,7 +394,8 @@ class FieldDependencyExplorer:
             if text and text != "​":
                 return text
 
-        except:
+        except Exception as e:
+            # Can't determine label, use fallback
             pass
 
         return f"Field_{index + 1}"
@@ -414,7 +419,8 @@ class FieldDependencyExplorer:
                 if found_options and len(found_options) > 0:
                     options = found_options
                     break
-            except:
+            except Exception as e:
+                # Selector didn't match, try next one
                 continue
 
         return options

@@ -141,6 +141,36 @@ class LoginValidator:
             return False
 
 
+def verify_login(page, base_url: str = "https://fresh2.cammaster.org") -> bool:
+    """
+    Verify login success with strong signal validation.
+
+    Args:
+        page: Playwright page object
+        base_url: CAM base URL for API endpoint construction
+
+    Returns:
+        True if login verified, False otherwise
+    """
+    logger.info("\n=== Verifying Login Success ===")
+
+    # Use LoginValidator for robust verification
+    # Note: Adjust selectors and API endpoint based on actual CAM UI/API structure
+    validator = LoginValidator(
+        home_selectors=[
+            ".user-menu",
+            "[data-testid='user-profile']",
+            ".account-dropdown",
+            "[class*='user']",
+            "[class*='profile']"
+        ],
+        api_endpoint=None,  # Set to actual CAM API endpoint if available (e.g., f"{base_url}/api/user/info")
+        require_both=False  # Selector-only for now, can enable API when endpoint is known
+    )
+
+    return validator.verify_login_success(page)
+
+
 def auto_login(
     username,
     password,
@@ -217,20 +247,6 @@ def auto_login(
                     # No error message found, continue
                     pass
 
-                # If already at /v3 or /v3/home, login successful
-                if "/v3" in current_url:
-                    logger.info("Already redirected to v3, login successful!")
-                else:
-                    # Might need 2FA or manual intervention
-                    if not headless:
-                        logger.info("Manual verification may be required!")
-                        logger.info("Please check the browser window and complete any verification.")
-                        logger.info("Waiting 30 seconds for you to complete...")
-                        page.wait_for_timeout(30000)
-                    else:
-                        logger.warning("Not redirected to v3 and running in headless mode")
-                        raise RetryableError("Login did not redirect to v3 page")
-
                 # Wait for redirect to home page (or any v3 page)
                 logger.info("Waiting for login to complete...")
                 try:
@@ -238,7 +254,19 @@ def auto_login(
                 except:
                     # Check if we're already at v3
                     if "/v3" not in page.url:
-                        raise RetryableError("Failed to reach v3 page after login")
+                        # Not at v3 yet, might need manual intervention
+                        if not headless:
+                            logger.info("Manual verification may be required!")
+                            logger.info("Please check the browser window and complete any verification.")
+                            logger.info("Waiting 30 seconds for you to complete...")
+                            page.wait_for_timeout(30000)
+                        else:
+                            logger.warning("Not redirected to v3 and running in headless mode")
+                            raise RetryableError("Login did not redirect to v3 page")
+
+                # Use LoginValidator for robust verification
+                if not verify_login(page, base_url):
+                    raise RetryableError("Login verification failed - no home selectors found")
 
                 logger.info("Login successful!")
                 logger.info(f"Current URL: {page.url}")

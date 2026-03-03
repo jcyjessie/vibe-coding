@@ -141,12 +141,13 @@ class CAMCaptureV3:
         current_state = self._detect_state_change()
 
         # 检查是否为重复状态
-        if self.state_tracker.is_duplicate(current_state):
+        fingerprint = self.state_tracker.generate_fingerprint(current_state)
+        if self.state_tracker.has_visited_state(fingerprint):
             logger.info(f"Skipping duplicate state: {step_name}")
             return None
 
         # 记录新状态
-        self.state_tracker.add_state(current_state)
+        self.state_tracker.mark_state_visited(fingerprint)
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         screenshot_filename = f"{step_name}_{timestamp}.png"

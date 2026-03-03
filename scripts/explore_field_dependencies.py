@@ -453,11 +453,9 @@ class FieldDependencyExplorer:
                     if not dropdown.is_visible():
                         continue
 
-                    self.budget.increment_steps()
-
                     # Get field label/identifier
                     field_label = self._get_field_label(dropdown, dropdown_idx)
-                    print(f"\n  [Field {dropdown_idx + 1}] Exploring: {field_label} (Step {self.budget.steps_taken})")
+                    print(f"\n  [Field {dropdown_idx + 1}] Exploring: {field_label}")
                     print(f"  Budget status: {self.budget.get_status()}")
 
                     # Click to open dropdown
@@ -480,12 +478,20 @@ class FieldDependencyExplorer:
                     options_to_try = self._stratified_sample(options, sample_size=5)
 
                     for option_idx, option in enumerate(options_to_try):
+                        # Check budget before testing each option
+                        if not self.budget.can_continue():
+                            print(f"\n⚠️  Budget exhausted: {self.budget.get_status()}")
+                            break
+
                         try:
                             option_text = option.text_content().strip()
                             if not option_text or option_text in ["", "​"]:
                                 continue
 
-                            print(f"    Testing option: {option_text}")
+                            # Increment step counter for each option tested
+                            self.budget.increment_steps()
+
+                            print(f"    Testing option: {option_text} (Step {self.budget.steps_taken})")
 
                             # Click the option
                             option.click(timeout=2000)

@@ -27,3 +27,46 @@ def test_baseline_comparison_detects_changes():
     # Action 2 should detect NO changes (same as baseline)
     changes2 = explorer._compare_states(baseline, state_after_action2)
     assert len(changes2) == 0
+
+
+def test_capture_dropdown_options():
+    """Test that dropdown options are captured correctly"""
+    explorer = FieldDependencyExplorer()
+
+    # Mock dropdown element with options
+    class MockOption:
+        def __init__(self, value, text):
+            self._value = value
+            self._text = text
+
+        def get_attribute(self, attr):
+            if attr == "value":
+                return self._value
+            return None
+
+        def inner_text(self):
+            return self._text
+
+    class MockDropdown:
+        def __init__(self):
+            self.options = [
+                MockOption("opt1", "Option 1"),
+                MockOption("opt2", "Option 2"),
+                MockOption("opt3", "Option 3")
+            ]
+
+        def query_selector_all(self, selector):
+            if selector == "option":
+                return self.options
+            return []
+
+    mock_dropdown = MockDropdown()
+    result = explorer._extract_dropdown_options(mock_dropdown)
+
+    assert len(result) == 3
+    assert result[0]["value"] == "opt1"
+    assert result[0]["text"] == "Option 1"
+    assert result[1]["value"] == "opt2"
+    assert result[1]["text"] == "Option 2"
+    assert result[2]["value"] == "opt3"
+    assert result[2]["text"] == "Option 3"

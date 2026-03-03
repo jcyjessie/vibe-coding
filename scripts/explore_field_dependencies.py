@@ -162,6 +162,11 @@ class FieldDependencyExplorer:
                         "type": "select",
                         "value": text
                     }
+
+                    # Collect all dropdown options for <select> elements
+                    tag_name = sel.evaluate("el => el.tagName.toLowerCase()")
+                    if tag_name == "select":
+                        form_state["dropdown_options"][aria_label] = self._extract_dropdown_options(sel)
                 except:
                     continue
 
@@ -169,6 +174,26 @@ class FieldDependencyExplorer:
             print(f"    Warning: Could not extract form state: {e}")
 
         return form_state
+
+    def _extract_dropdown_options(self, element) -> list:
+        """
+        Extract all options from a dropdown element.
+
+        Args:
+            element: Playwright element handle for select/dropdown
+
+        Returns:
+            List of dicts with 'value' and 'text' keys
+        """
+        options = []
+        option_elements = element.query_selector_all("option")
+
+        for option in option_elements:
+            value = option.get_attribute("value")
+            text = option.inner_text()
+            options.append({"value": value, "text": text.strip()})
+
+        return options
 
     def explore_dependencies(self, target_url: str):
         """Systematically explore field dependencies"""

@@ -58,8 +58,8 @@ class CAMCaptureV3:
         """Launch Chrome with storageState (Kintsugi style)"""
         try:
             if not self.auth_file.exists():
-                print(f"❌ Auth file not found: {self.auth_file}")
-                print("Please run auto_login_cam_v2.py first to log in.")
+                logger.error(f"Auth file not found: {self.auth_file}")
+                logger.info("Please run auto_login_cam_v2.py first to log in.")
                 return False
 
             self.playwright = sync_playwright().start()
@@ -80,11 +80,11 @@ class CAMCaptureV3:
             # Create new page
             self.page = self.context.new_page()
 
-            print(f"✓ Browser launched with auth state: {self.auth_file}")
+            logger.info(f"Browser launched with auth state: {self.auth_file}")
             return True
 
         except Exception as e:
-            print(f"Error launching browser: {e}")
+            logger.error(f"Error launching browser: {e}")
             return False
 
     def _detect_state_change(self) -> Dict[str, Any]:
@@ -106,8 +106,8 @@ class CAMCaptureV3:
                     for btn in buttons[:30]
                     if btn.text_content() and btn.text_content().strip()
                 ]
-            except:
-                pass
+            except Exception as e:
+                logger.debug(f"Failed to extract visible buttons: {e}")
 
             # 提取可见输入框
             try:
@@ -116,8 +116,8 @@ class CAMCaptureV3:
                     inp.get_attribute("placeholder") or inp.get_attribute("name") or ""
                     for inp in inputs[:30]
                 ]
-            except:
-                pass
+            except Exception as e:
+                logger.debug(f"Failed to extract visible inputs: {e}")
 
             # 提取可见下拉框
             try:
@@ -126,8 +126,8 @@ class CAMCaptureV3:
                     sel.get_attribute("name") or sel.get_attribute("aria-label") or ""
                     for sel in dropdowns[:20]
                 ]
-            except:
-                pass
+            except Exception as e:
+                logger.debug(f"Failed to extract visible dropdowns: {e}")
 
             return state
 
@@ -175,7 +175,8 @@ class CAMCaptureV3:
                 for btn in buttons[:30]
                 if btn.text_content() and btn.text_content().strip()
             ]
-        except:
+        except Exception as e:
+            logger.debug(f"Failed to extract buttons: {e}")
             page_info["buttons"] = []
 
         # Extract input fields
@@ -189,7 +190,8 @@ class CAMCaptureV3:
                 }
                 for inp in inputs[:30]
             ]
-        except:
+        except Exception as e:
+            logger.debug(f"Failed to extract input fields: {e}")
             page_info["input_fields"] = []
 
         # Extract dropdowns/selects
@@ -202,12 +204,13 @@ class CAMCaptureV3:
                 }
                 for sel in selects[:20]
             ]
-        except:
+        except Exception as e:
+            logger.debug(f"Failed to extract dropdowns: {e}")
             page_info["dropdowns"] = []
 
-        print(f"  ✓ Step {self.step_counter}: {description}")
-        print(f"    - Screenshot: {screenshot_filename}")
-        print(f"    - Buttons: {len(page_info.get('buttons', []))}, Inputs: {len(page_info.get('input_fields', []))}, Dropdowns: {len(page_info.get('dropdowns', []))}")
+        logger.info(f"Step {self.step_counter}: {description}")
+        logger.info(f"  Screenshot: {screenshot_filename}")
+        logger.info(f"  Buttons: {len(page_info.get('buttons', []))}, Inputs: {len(page_info.get('input_fields', []))}, Dropdowns: {len(page_info.get('dropdowns', []))}")
 
         self.step_counter += 1
 
@@ -215,17 +218,17 @@ class CAMCaptureV3:
 
     def automatic_capture(self, target_url: str):
         """Automatically explore and capture the page"""
-        print("\n" + "="*60)
-        print("AUTOMATIC CAPTURE MODE - V3 (STATE TRACKING)")
-        print("="*60)
+        logger.info("=" * 60)
+        logger.info("AUTOMATIC CAPTURE MODE - V3 (STATE TRACKING)")
+        logger.info("=" * 60)
 
         # Navigate to URL
-        print(f"\nNavigating to: {target_url}")
+        logger.info(f"Navigating to: {target_url}")
         self.page.goto(target_url, wait_until="domcontentloaded", timeout=60000)
         self.page.wait_for_timeout(3000)  # Wait for page to fully load
 
-        print(f"Current page: {self.page.url}")
-        print(f"Page title: {self.page.title()}\n")
+        logger.info(f"Current page: {self.page.url}")
+        logger.info(f"Page title: {self.page.title()}")
 
         # Step 1: Capture initial state
         result = self.capture_screenshot("01-initial-page", "Initial page load")
@@ -238,26 +241,43 @@ class CAMCaptureV3:
         # Step 3: Capture any modals or dialogs
         self._capture_modals()
 
-        print("\n" + "="*60)
-        print(f"CAPTURE COMPLETE - {len(self.captured_steps)} steps captured")
-        print("="*60 + "\n")
+        logger.info("=" * 60)
+        logger.info(f"CAPTURE COMPLETE - {len(self.captured_steps)} steps captured")
+        logger.info("=" * 60)
 
         return self.captured_steps
 
     def _capture_interactive_elements(self):
         """Find and interact with dropdowns, buttons, date pickers"""
-        print("\n[Phase 2] Exploring interactive elements...")
+        logger.info("[Phase 2] Exploring interactive elements...")
 
         # Priority 1: Look for "New" button first (common in CAM for creating configs)
-        print("\n  [Priority] Looking for 'New' button...")
+        logger.info("[Priority] Looking for 'New' button...")
         try:
-            new_buttons = self.page.locator("button:has-text('New'):visible").all()
+            # Use selector engine for robust i18n-safe selection
+            new_button_selectors = self.selector_engine.get_fallback_selectors(
+                element_type="button",
+                aria_label="New",
+                text="New"
+            )
+
+            new_buttons = []
+            for selector in new_button_selectors:
+                try:
+                    buttons = self.page.locator(f"{selector}:visible").all()
+                    if buttons:
+                        new_buttons = buttons
+                        logger.info(f"Found {len(new_buttons)} 'New' button(s) using selector: {selector}")
+                        break
+                except Exception as e:
+                    logger.debug(f"Selector {selector} failed: {e}")
+                    continue
+
             if new_buttons:
-                print(f"  Found {len(new_buttons)} 'New' button(s)")
                 for idx, btn in enumerate(new_buttons[:1]):  # Only click first one
                     try:
                         if btn.is_visible():
-                            print(f"  Clicking 'New' button...")
+                            logger.info("Clicking 'New' button...")
                             btn.click(timeout=3000)
                             self.page.wait_for_timeout(2000)
 
@@ -273,17 +293,29 @@ class CAMCaptureV3:
 
                             # Close dialog if there's a close button
                             try:
-                                close_btns = self.page.locator("button:has-text('Cancel'):visible, button:has-text('Close'):visible").all()
-                                if close_btns:
-                                    close_btns[0].click(timeout=2000)
-                                    self.page.wait_for_timeout(1000)
-                            except:
-                                pass
-                    except Exception as e:
-                        print(f"  Could not interact with 'New' button: {e}")
+                                close_button_selectors = self.selector_engine.get_fallback_selectors(
+                                    element_type="button",
+                                    aria_label="Cancel",
+                                    text="Cancel"
+                                )
+                                for selector in close_button_selectors:
+                                    try:
+                                        close_btns = self.page.locator(f"{selector}:visible").all()
+                                        if close_btns:
+                                            close_btns[0].click(timeout=2000)
+                                            self.page.wait_for_timeout(1000)
+                                            logger.info("Closed dialog")
+                                            break
+                                    except Exception as e:
+                                        logger.debug(f"Close button selector {selector} failed: {e}")
+                                        continue
+                            except Exception as e:
+                                logger.debug(f"Could not close dialog: {e}")
+                    except (PlaywrightTimeout, Exception) as e:
+                        logger.warning(f"Could not interact with 'New' button: {e}")
                         continue
         except Exception as e:
-            print(f"  No 'New' button found or error: {e}")
+            logger.info(f"No 'New' button found or error: {e}")
 
         # Look for common CAM UI patterns
         selectors_to_try = [
@@ -320,7 +352,7 @@ class CAMCaptureV3:
             try:
                 elements = self.page.locator(selector).all()
                 if elements:
-                    print(f"\n  Found {len(elements)} {element_type}(s)")
+                    logger.info(f"Found {len(elements)} {element_type}(s)")
 
                     # Try to interact with the first one
                     for idx, element in enumerate(elements[:3]):  # Limit to first 3
@@ -351,22 +383,22 @@ class CAMCaptureV3:
                                 try:
                                     self.page.keyboard.press("Escape")
                                     self.page.wait_for_timeout(500)
-                                except:
-                                    pass
+                                except Exception as e:
+                                    logger.debug(f"Could not close dropdown: {e}")
 
                             break  # Only interact with first visible element of each type
 
-                        except Exception as e:
-                            # Element might not be clickable, skip it
+                        except (PlaywrightTimeout, Exception) as e:
+                            logger.debug(f"Element not clickable: {e}")
                             continue
 
             except Exception as e:
-                # Selector might not match anything, continue
+                logger.debug(f"Selector {selector} did not match: {e}")
                 continue
 
     def _explore_menu_items(self, menu_type: str, menu_idx: int):
         """After opening a menu, try to click each menu item to capture workflows"""
-        print(f"\n  [Menu] Exploring menu items...")
+        logger.info("[Menu] Exploring menu items...")
 
         try:
             # Wait for menu to fully appear
@@ -386,13 +418,14 @@ class CAMCaptureV3:
                     items = self.page.locator(selector).all()
                     if items and len(items) > 0:
                         menu_items = items
-                        print(f"  Found {len(menu_items)} menu item(s) using selector: {selector}")
+                        logger.info(f"Found {len(menu_items)} menu item(s) using selector: {selector}")
                         break
-                except:
+                except Exception as e:
+                    logger.debug(f"Menu item selector {selector} failed: {e}")
                     continue
 
             if not menu_items:
-                print("  No menu items found")
+                logger.info("No menu items found")
                 return
 
             # Try to click each menu item
@@ -403,7 +436,7 @@ class CAMCaptureV3:
 
                     # Get menu item text
                     item_text = item.text_content().strip() if item.text_content() else f"item-{item_idx+1}"
-                    print(f"  Clicking menu item: {item_text}")
+                    logger.info(f"Clicking menu item: {item_text}")
 
                     # Click the menu item
                     item.click(timeout=2000)
@@ -420,17 +453,28 @@ class CAMCaptureV3:
                     try:
                         dialog_visible = self.page.locator("[role='dialog']:visible, .v-dialog--active:visible").count() > 0
                         if dialog_visible:
-                            print(f"  Dialog appeared after clicking '{item_text}'")
+                            logger.info(f"Dialog appeared after clicking '{item_text}'")
                             self._capture_dialog_fields()
 
                             # Close the dialog
-                            close_buttons = self.page.locator("button:has-text('Cancel'):visible, button:has-text('Close'):visible, button:has-text('×'):visible").all()
-                            if close_buttons:
-                                close_buttons[0].click(timeout=2000)
-                                self.page.wait_for_timeout(1000)
-                                print(f"  Closed dialog")
-                    except:
-                        pass
+                            close_button_selectors = self.selector_engine.get_fallback_selectors(
+                                element_type="button",
+                                aria_label="Cancel",
+                                text="Cancel"
+                            )
+                            for selector in close_button_selectors:
+                                try:
+                                    close_buttons = self.page.locator(f"{selector}:visible").all()
+                                    if close_buttons:
+                                        close_buttons[0].click(timeout=2000)
+                                        self.page.wait_for_timeout(1000)
+                                        logger.info("Closed dialog")
+                                        break
+                                except Exception as e:
+                                    logger.debug(f"Close button selector {selector} failed: {e}")
+                                    continue
+                    except Exception as e:
+                        logger.debug(f"Could not check for dialog: {e}")
 
                     # Re-open the menu for the next item (menu might have closed)
                     # Find the original menu button again
@@ -449,23 +493,24 @@ class CAMCaptureV3:
                                         if btns[menu_idx].is_visible():
                                             btns[menu_idx].click(timeout=2000)
                                             self.page.wait_for_timeout(1000)
-                                            print(f"  Re-opened menu for next item")
+                                            logger.info("Re-opened menu for next item")
                                             break
-                                except:
+                                except Exception as e:
+                                    logger.debug(f"Could not re-open menu: {e}")
                                     continue
-                    except:
-                        pass
+                    except Exception as e:
+                        logger.debug(f"Could not re-open menu: {e}")
 
-                except Exception as e:
-                    print(f"  Could not interact with menu item: {e}")
+                except (PlaywrightTimeout, Exception) as e:
+                    logger.warning(f"Could not interact with menu item: {e}")
                     continue
 
         except Exception as e:
-            print(f"  Error exploring menu items: {e}")
+            logger.error(f"Error exploring menu items: {e}")
 
     def _capture_modals(self):
         """Check for and capture any modals or dialogs"""
-        print("\n[Phase 3] Checking for modals/dialogs...")
+        logger.info("[Phase 3] Checking for modals/dialogs...")
 
         modal_selectors = [
             "[role='dialog']:visible",
@@ -477,7 +522,7 @@ class CAMCaptureV3:
             try:
                 modals = self.page.locator(selector).all()
                 if modals:
-                    print(f"  Found {len(modals)} modal(s)")
+                    logger.info(f"Found {len(modals)} modal(s)")
                     for idx, modal in enumerate(modals[:2]):
                         if modal.is_visible():
                             step_name = f"03-modal-{idx+1}"
@@ -485,12 +530,13 @@ class CAMCaptureV3:
                             result = self.capture_screenshot(step_name, description)
                             if result:
                                 self.captured_steps.append(result)
-            except:
+            except Exception as e:
+                logger.debug(f"Modal selector {selector} failed: {e}")
                 continue
 
     def _capture_dialog_fields(self):
         """Capture all fields in an opened dialog/form"""
-        print("\n  [Dialog] Exploring form fields...")
+        logger.info("[Dialog] Exploring form fields...")
 
         try:
             # Wait for dialog to appear
@@ -509,17 +555,17 @@ class CAMCaptureV3:
                     dialogs = self.page.locator(f"{selector}:visible").all()
                     if dialogs and len(dialogs) > 0:
                         dialog = dialogs[0]
-                        print(f"  Found dialog with selector: {selector}")
+                        logger.info(f"Found dialog with selector: {selector}")
 
                         # Capture all input fields in dialog
                         inputs = dialog.locator("input:visible, textarea:visible").all()
                         if inputs:
-                            print(f"  Found {len(inputs)} input field(s) in dialog")
+                            logger.info(f"Found {len(inputs)} input field(s) in dialog")
 
                         # Capture all select/dropdowns in dialog
                         selects = dialog.locator("select:visible, [role='combobox']:visible").all()
                         if selects:
-                            print(f"  Found {len(selects)} dropdown(s) in dialog")
+                            logger.info(f"Found {len(selects)} dropdown(s) in dialog")
                             # Try to click first dropdown to see options
                             for idx, sel in enumerate(selects[:3]):
                                 try:
@@ -534,20 +580,22 @@ class CAMCaptureV3:
                                         # Press Escape to close dropdown
                                         self.page.keyboard.press("Escape")
                                         self.page.wait_for_timeout(500)
-                                except:
+                                except (PlaywrightTimeout, Exception) as e:
+                                    logger.debug(f"Could not interact with dropdown: {e}")
                                     continue
 
                         # Capture all buttons in dialog
                         buttons = dialog.locator("button:visible").all()
                         if buttons:
-                            print(f"  Found {len(buttons)} button(s) in dialog")
+                            logger.info(f"Found {len(buttons)} button(s) in dialog")
 
                         break  # Found dialog, no need to try other selectors
-                except:
+                except Exception as e:
+                    logger.debug(f"Dialog selector {selector} failed: {e}")
                     continue
 
         except Exception as e:
-            print(f"  Could not explore dialog fields: {e}")
+            logger.warning(f"Could not explore dialog fields: {e}")
 
     def save_results(self, feature_name="feature"):
         """Save captured data to JSON file"""
@@ -564,8 +612,8 @@ class CAMCaptureV3:
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(result, f, indent=2, ensure_ascii=False)
 
-        print(f"✓ Results saved to: {output_file}")
-        print(f"✓ Screenshots saved to: {self.screenshots_dir}")
+        logger.info(f"Results saved to: {output_file}")
+        logger.info(f"Screenshots saved to: {self.screenshots_dir}")
 
         return output_file
 
@@ -653,21 +701,21 @@ Examples:
             # Save results
             output_file = capture.save_results(args.feature_name)
 
-            print("\n" + "="*60)
-            print("NEXT STEPS")
-            print("="*60)
-            print(f"\n1. Review captured data: {output_file}")
-            print(f"2. Review screenshots: {capture.screenshots_dir}")
-            print(f"3. Use this data to generate CAM documentation")
-            print("="*60 + "\n")
+            logger.info("=" * 60)
+            logger.info("NEXT STEPS")
+            logger.info("=" * 60)
+            logger.info(f"1. Review captured data: {output_file}")
+            logger.info(f"2. Review screenshots: {capture.screenshots_dir}")
+            logger.info(f"3. Use this data to generate CAM documentation")
+            logger.info("=" * 60)
         else:
-            print("\nNo steps captured.")
+            logger.warning("No steps captured.")
 
     except KeyboardInterrupt:
-        print("\n\nCapture interrupted by user.")
+        logger.info("Capture interrupted by user.")
 
     except Exception as e:
-        print(f"\nError during capture: {e}")
+        logger.error(f"Error during capture: {e}")
         import traceback
         traceback.print_exc()
 

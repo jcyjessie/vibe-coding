@@ -47,6 +47,13 @@ def test_capture_dropdown_options():
         def inner_text(self):
             return self._text
 
+    class MockLocator:
+        def __init__(self, options):
+            self._options = options
+
+        def all(self):
+            return self._options
+
     class MockDropdown:
         def __init__(self):
             self.options = [
@@ -55,10 +62,10 @@ def test_capture_dropdown_options():
                 MockOption("opt3", "Option 3")
             ]
 
-        def query_selector_all(self, selector):
+        def locator(self, selector):
             if selector == "option":
-                return self.options
-            return []
+                return MockLocator(self.options)
+            return MockLocator([])
 
     mock_dropdown = MockDropdown()
     result = explorer._extract_dropdown_options(mock_dropdown)
@@ -70,3 +77,118 @@ def test_capture_dropdown_options():
     assert result[1]["text"] == "Option 2"
     assert result[2]["value"] == "opt3"
     assert result[2]["text"] == "Option 3"
+
+
+def test_capture_dropdown_options_with_empty_text():
+    """Test that empty options are skipped"""
+    explorer = FieldDependencyExplorer()
+
+    class MockOption:
+        def __init__(self, value, text):
+            self._value = value
+            self._text = text
+
+        def get_attribute(self, attr):
+            if attr == "value":
+                return self._value
+            return None
+
+        def inner_text(self):
+            return self._text
+
+    class MockLocator:
+        def __init__(self, options):
+            self._options = options
+
+        def all(self):
+            return self._options
+
+    class MockDropdown:
+        def __init__(self):
+            self.options = [
+                MockOption("opt1", "Option 1"),
+                MockOption("opt2", "   "),  # Whitespace only
+                MockOption("opt3", ""),      # Empty string
+                MockOption("opt4", "Option 4")
+            ]
+
+        def locator(self, selector):
+            if selector == "option":
+                return MockLocator(self.options)
+            return MockLocator([])
+
+    mock_dropdown = MockDropdown()
+    result = explorer._extract_dropdown_options(mock_dropdown)
+
+    # Should only have 2 options (empty ones skipped)
+    assert len(result) == 2
+    assert result[0]["value"] == "opt1"
+    assert result[0]["text"] == "Option 1"
+    assert result[1]["value"] == "opt4"
+    assert result[1]["text"] == "Option 4"
+
+
+def test_capture_dropdown_options_with_none_value():
+    """Test that options with None value are captured"""
+    explorer = FieldDependencyExplorer()
+
+    class MockOption:
+        def __init__(self, value, text):
+            self._value = value
+            self._text = text
+
+        def get_attribute(self, attr):
+            if attr == "value":
+                return self._value
+            return None
+
+        def inner_text(self):
+            return self._text
+
+    class MockLocator:
+        def __init__(self, options):
+            self._options = options
+
+        def all(self):
+            return self._options
+
+    class MockDropdown:
+        def __init__(self):
+            self.options = [
+                MockOption(None, "Select..."),  # No value attribute
+                MockOption("opt1", "Option 1")
+            ]
+
+        def locator(self, selector):
+            if selector == "option":
+                return MockLocator(self.options)
+            return MockLocator([])
+
+    mock_dropdown = MockDropdown()
+    result = explorer._extract_dropdown_options(mock_dropdown)
+
+    assert len(result) == 2
+    assert result[0]["value"] is None
+    assert result[0]["text"] == "Select..."
+    assert result[1]["value"] == "opt1"
+    assert result[1]["text"] == "Option 1"
+
+
+def test_capture_dropdown_options_empty_dropdown():
+    """Test that empty dropdown returns empty list"""
+    explorer = FieldDependencyExplorer()
+
+    class MockLocator:
+        def all(self):
+            return []
+
+    class MockDropdown:
+        def locator(self, selector):
+            return MockLocator()
+
+    mock_dropdown = MockDropdown()
+    result = explorer._extract_dropdown_options(mock_dropdown)
+
+    assert len(result) == 0
+    assert result == []
+

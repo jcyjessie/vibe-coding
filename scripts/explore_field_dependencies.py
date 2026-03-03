@@ -167,7 +167,7 @@ class FieldDependencyExplorer:
                     tag_name = sel.evaluate("el => el.tagName.toLowerCase()")
                     if tag_name == "select":
                         form_state["dropdown_options"][aria_label] = self._extract_dropdown_options(sel)
-                except:
+                except Exception:
                     continue
 
         except Exception as e:
@@ -180,18 +180,29 @@ class FieldDependencyExplorer:
         Extract all options from a dropdown element.
 
         Args:
-            element: Playwright element handle for select/dropdown
+            element: Playwright Locator for select/dropdown
 
         Returns:
-            List of dicts with 'value' and 'text' keys
+            List of dicts with 'value' (can be None) and 'text' keys.
+            Empty options (whitespace-only text) are skipped.
         """
         options = []
-        option_elements = element.query_selector_all("option")
 
-        for option in option_elements:
-            value = option.get_attribute("value")
-            text = option.inner_text()
-            options.append({"value": value, "text": text.strip()})
+        try:
+            option_elements = element.locator("option").all()
+
+            for option in option_elements:
+                value = option.get_attribute("value")
+                text = option.inner_text()
+                text_stripped = text.strip()
+
+                # Skip empty options
+                if not text_stripped:
+                    continue
+
+                options.append({"value": value, "text": text_stripped})
+        except Exception as e:
+            print(f"    Warning: Could not extract dropdown options: {e}")
 
         return options
 

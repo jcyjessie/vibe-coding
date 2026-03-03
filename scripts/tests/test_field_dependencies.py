@@ -409,3 +409,56 @@ def test_classify_change_type_options_changed():
     changes = explorer._compare_states(baseline, current)
     assert changes["dropdown"]["change_type"] == ChangeType.OPTIONS_CHANGED.value
 
+
+def test_classify_change_type_field_removed():
+    """Test that field removals are correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"field_a": {"visible": True}, "field_b": {"visible": True}}
+    current = {"field_a": {"visible": True}}
+
+    changes = explorer._compare_states(baseline, current)
+    assert changes["field_b"]["change_type"] == ChangeType.FIELD_REMOVED.value
+
+
+def test_classify_change_type_field_modified():
+    """Test that field modifications are correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"field_a": {"value": "old"}}
+    current = {"field_a": {"value": "new"}}
+
+    changes = explorer._compare_states(baseline, current)
+    assert changes["field_a"]["change_type"] == ChangeType.FIELD_MODIFIED.value
+
+
+def test_classify_change_type_dialog_closed():
+    """Test that dialog closing is correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"field1": {"visible": True}, "dialog_title": {"visible": True}, "dialog_content": {"visible": True}}
+    current = {"field1": {"visible": True}}
+
+    changes = explorer._compare_states(baseline, current)
+    assert "dialog_title" in changes
+    assert changes["dialog_title"]["change_type"] == ChangeType.DIALOG_CLOSED.value
+
+
+def test_classify_change_type_validation_error():
+    """Test that validation errors are correctly classified"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    baseline = {"field_a": {"value": "", "error": None}}
+    current = {"field_a": {"value": "", "error": "This field is required"}}
+
+    changes = explorer._compare_states(baseline, current)
+    assert changes["field_a"]["change_type"] == ChangeType.VALIDATION_ERROR.value
+

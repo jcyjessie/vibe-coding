@@ -42,6 +42,9 @@ class ChangeType(Enum):
 
 
 class FieldDependencyExplorer:
+    # Minimum number of dialog-related fields required to classify as dialog opened/closed
+    MIN_DIALOG_FIELDS_THRESHOLD = 2
+
     def __init__(self, auth_file=".auth/state.json", output_dir="captured_data"):
         self.auth_file = Path(auth_file)
         self.output_dir = Path(output_dir)
@@ -549,6 +552,20 @@ class FieldDependencyExplorer:
         """
         Compare current state against baseline to detect changes with semantic types.
 
+        Classification priority for field modifications (checked in order):
+        1. DIALOG_OPENED/CLOSED - Field contains dialog-related keywords
+        2. OPTIONS_CHANGED - Dropdown options list changed
+        3. VALIDATION_ERROR - Field has error/validation indicators
+        4. FIELD_MODIFIED - Generic field value change (fallback)
+
+        For new fields:
+        - DIALOG_OPENED if field matches dialog patterns
+        - FIELD_ADDED otherwise
+
+        For removed fields:
+        - DIALOG_CLOSED if field matches dialog patterns
+        - FIELD_REMOVED otherwise
+
         Args:
             baseline_state: The initial state before any actions
             current_state: The state after an action
@@ -619,7 +636,14 @@ class FieldDependencyExplorer:
         return changes
 
     def _is_dialog_field(self, field_id: str, state: dict) -> bool:
-        """Check if field is part of a dialog based on naming patterns"""
+        """
+        Check if field is part of a dialog based on naming patterns.
+
+        For individual fields: Returns True if field_id contains dialog keywords
+        For visible_fields list: Returns True if list contains >= MIN_DIALOG_FIELDS_THRESHOLD dialog items
+
+        This ensures consistent threshold-based detection across both scenarios.
+        """
         dialog_keywords = ["dialog", "modal", "popup", "overlay"]
 
         # Check if field_id itself contains dialog keywords
@@ -631,8 +655,8 @@ class FieldDependencyExplorer:
             visible_items = state.get(field_id, [])
             dialog_items = [item for item in visible_items
                           if any(keyword in str(item).lower() for keyword in dialog_keywords)]
-            # Consider it a dialog if multiple dialog-related items are present
-            return len(dialog_items) >= 2
+            # Consider it a dialog if threshold number of dialog-related items are present
+            return len(dialog_items) >= self.MIN_DIALOG_FIELDS_THRESHOLD
 
         return False
 
@@ -642,9 +666,27 @@ class FieldDependencyExplorer:
                 baseline_props.get("options") != current_props.get("options"))
 
     def _is_validation_error(self, props: dict) -> bool:
-        """Check if field shows validation error"""
-        error_indicators = ["error", "invalid", "required"]
-        return any(indicator in str(props).lower() for indicator in error_indicators)
+        """
+        Check if field shows validation error by examining specific keys.
+
+        Checks for error indicators in common validation-related keys:
+        - 'error': Error message field
+        - 'validation': Validation state field
+        - 'invalid': Invalid flag field
+        - 'required': Required field violation
+
+        Returns True if any of these keys exist and have truthy values.
+        """
+        if not isinstance(props, dict):
+            return False
+
+        # Check specific validation-related keys
+        validation_keys = ['error', 'validation', 'invalid', 'required']
+        for key in validation_keys:
+            if key in props and props[key]:
+                return True
+
+        return False
 
     def save_results(self, feature_name="feature"):
         """Save captured data and dependencies to JSON files"""

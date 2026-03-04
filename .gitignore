@@ -10,6 +10,11 @@ htmlcov/
 dist/
 build/
 
+# Authentication state (contains session cookies)
+.auth/
+scripts/.auth/
+.claude/skills/*/scripts/.auth/
+
 # Backups
 *.backup
 *.bak

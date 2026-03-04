@@ -349,11 +349,13 @@ def test_full_exploration_workflow():
 
     # Verify initialization sets up required attributes
     assert hasattr(explorer, "output_dir")
-    assert hasattr(explorer, "screenshots_dir")
-    assert hasattr(explorer, "captured_steps")
     assert hasattr(explorer, "field_dependencies")
-    assert isinstance(explorer.captured_steps, list)
     assert isinstance(explorer.field_dependencies, dict)
+
+    # screenshots_dir and captured_steps live on explorer.recorder (a StepRecorder),
+    # which is initialized lazily in explore_dependencies(). Before that call, recorder is None.
+    assert hasattr(explorer, "recorder")
+    assert explorer.recorder is None
 
 
 def test_classify_change_type_url_change():
@@ -370,18 +372,34 @@ def test_classify_change_type_url_change():
 
 
 def test_classify_change_type_dialog_opened():
-    """Test that dialog opening is correctly classified"""
+    """Test that dialog opening is correctly classified for new fields"""
     from explore_field_dependencies import ChangeType
 
     explorer = FieldDependencyExplorer()
 
+    # DIALOG_OPENED applies to new fields whose key contains dialog keywords
+    baseline = {"field1": {"visible": True}}
+    current = {"field1": {"visible": True}, "dialog_title": {"visible": True}, "dialog_content": {"visible": True}}
+
+    changes = explorer._compare_states(baseline, current)
+    # New fields with "dialog" in their key should be classified as DIALOG_OPENED
+    assert "dialog_title" in changes
+    assert changes["dialog_title"]["change_type"] == ChangeType.DIALOG_OPENED.value
+
+
+def test_classify_change_type_dialog_opened_modified_field_is_field_modified():
+    """Test that a modified field with dialog content is FIELD_MODIFIED, not DIALOG_OPENED"""
+    from explore_field_dependencies import ChangeType
+
+    explorer = FieldDependencyExplorer()
+
+    # Modifying an existing field (even one with dialog content) should be FIELD_MODIFIED
     baseline = {"visible_fields": ["field1"]}
     current = {"visible_fields": ["field1", "dialog_title", "dialog_content"]}
 
     changes = explorer._compare_states(baseline, current)
-    # Dialog detected when multiple fields with "dialog" in aria-label
-    assert any(ChangeType.DIALOG_OPENED.value in str(change)
-               for change in changes.values())
+    assert "visible_fields" in changes
+    assert changes["visible_fields"]["change_type"] == ChangeType.FIELD_MODIFIED.value
 
 
 def test_classify_change_type_field_added():

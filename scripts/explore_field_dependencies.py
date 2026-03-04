@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CAM Field Dependency Explorer - V2
+CAM Field Dependency Explorer - V3
 
 Systematically explores form field dependencies by:
 1. Opening the New Routine Report form
@@ -29,6 +29,8 @@ except ImportError:
 from enum import Enum
 from dataclasses import dataclass, field
 from time import time
+from core.browser_factory import create_page
+from core.artifacts import StepRecorder
 
 
 class ChangeType(Enum):
@@ -121,45 +123,24 @@ class FieldDependencyExplorer:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
 
-        self.screenshots_dir = self.output_dir / "screenshots"
-        self.screenshots_dir.mkdir(exist_ok=True)
-
-        self.playwright = None
-        self.browser = None
-        self.context = None
         self.page = None
-        self.captured_steps = []
-        self.step_counter = 1
+        self.cleanup = None
         self.field_dependencies = {}
 
         # Budget control
         self.budget = budget or ExplorationBudget()
 
+        # Note: StepRecorder will be initialized in explore_dependencies() with feature_name
+        self.recorder = None
+
     def launch_browser(self):
         """Launch Chrome with storageState"""
         try:
-            if not self.auth_file.exists():
-                print(f"❌ Auth file not found: {self.auth_file}")
-                print("Please run auto_login_cam_v2.py first to log in.")
-                return False
-
-            self.playwright = sync_playwright().start()
-
-            # Launch browser with proxy
-            self.browser = self.playwright.chromium.launch(
-                headless=False,
-                channel="chrome",
-                proxy={"server": "http://localhost:7890"}
+            # Use BrowserFactory to create page
+            self.page, self.cleanup = create_page(
+                auth_file=str(self.auth_file),
+                headless=False
             )
-
-            # Create context with saved authentication state
-            self.context = self.browser.new_context(
-                storage_state=str(self.auth_file),
-                viewport={"width": 1920, "height": 1080}
-            )
-
-            # Create new page
-            self.page = self.context.new_page()
 
             print(f"✓ Browser launched with auth state: {self.auth_file}")
             return True
@@ -170,37 +151,26 @@ class FieldDependencyExplorer:
 
     def capture_screenshot(self, step_name: str, description: str, extra_data: Dict = None) -> Dict[str, Any]:
         """Capture screenshot and page info"""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        screenshot_filename = f"{step_name}_{timestamp}.png"
-        screenshot_path = self.screenshots_dir / screenshot_filename
-
-        # Take screenshot
-        self.page.screenshot(path=str(screenshot_path), full_page=False)
-
-        # Extract page information
-        page_info = {
-            "step_number": self.step_counter,
-            "step_name": step_name,
-            "description": description,
-            "url": self.page.url,
-            "title": self.page.title(),
-            "screenshot": str(screenshot_filename),
-            "timestamp": timestamp
-        }
-
-        if extra_data:
-            page_info.update(extra_data)
-
         # Extract form state
-        page_info["form_state"] = self.extract_form_state()
+        form_state = self.extract_form_state()
 
-        print(f"  ✓ Step {self.step_counter}: {description}")
-        print(f"    - Screenshot: {screenshot_filename}")
+        # Combine form_state with extra_data
+        combined_data = {"form_state": form_state}
+        if extra_data:
+            combined_data.update(extra_data)
 
-        self.captured_steps.append(page_info)
-        self.step_counter += 1
+        # Use StepRecorder to capture
+        step_data = self.recorder.capture_step(
+            page=self.page,
+            step_name=step_name,
+            description=description,
+            extra_data=combined_data
+        )
 
-        return page_info
+        print(f"  ✓ Step {step_data['step_number']}: {description}")
+        print(f"    - Screenshot: {step_data['screenshot']}")
+
+        return step_data
 
     def extract_form_state(self) -> Dict[str, Any]:
         """Extract current state of all form fields"""
@@ -383,11 +353,14 @@ class FieldDependencyExplorer:
         # 按原始顺序返回采样项
         return [items[i] for i in sorted(indices)]
 
-    def explore_dependencies(self, target_url: str):
+    def explore_dependencies(self, target_url: str, feature_name: str = "feature"):
         """Systematically explore field dependencies"""
         print("\n" + "="*60)
         print("FIELD DEPENDENCY EXPLORATION MODE")
         print("="*60)
+
+        # Initialize StepRecorder with feature name
+        self.recorder = StepRecorder(output_dir=str(self.output_dir), feature_name=feature_name)
 
         # Navigate to URL
         print(f"\nNavigating to: {target_url}")
@@ -418,10 +391,10 @@ class FieldDependencyExplorer:
             print(f"  ❌ Error clicking 'New' button: {e}")
 
         print("\n" + "="*60)
-        print(f"EXPLORATION COMPLETE - {len(self.captured_steps)} steps captured")
+        print(f"EXPLORATION COMPLETE - {self.recorder.get_step_count()} steps captured")
         print("="*60 + "\n")
 
-        return self.captured_steps
+        return self.recorder.captured_steps
 
     def _explore_form_fields(self):
         """Systematically explore each form field and its dependencies with budget control"""
@@ -694,10 +667,9 @@ class FieldDependencyExplorer:
                     "current": current_props
                 }
             elif baseline_state[field_id] != current_props:
-                # Determine if it's options change, dialog change, validation error, or field modification
-                if self._is_dialog_field(field_id, current_state):
-                    change_type = ChangeType.DIALOG_OPENED.value
-                elif self._is_options_change(baseline_state[field_id], current_props):
+                # Determine if it's options change, validation error, or field modification
+                # Note: DIALOG_OPENED/CLOSED only applies to new/removed fields, not modified ones
+                if self._is_options_change(baseline_state[field_id], current_props):
                     change_type = ChangeType.OPTIONS_CHANGED.value
                 elif self._is_validation_error(current_props):
                     change_type = ChangeType.VALIDATION_ERROR.value
@@ -782,25 +754,22 @@ class FieldDependencyExplorer:
 
         return False
 
-    def save_results(self, feature_name="feature"):
+    def save_results(self):
         """Save captured data and dependencies to JSON files"""
-        # Save captured steps
-        output_file = self.output_dir / f"{feature_name}_dependencies.json"
+        # Save captured steps using StepRecorder
+        output_file = self.recorder.save_results(capture_mode="field_dependency_exploration")
 
-        result = {
-            "feature_name": feature_name,
-            "capture_date": datetime.now().isoformat(),
-            "capture_mode": "field_dependency_exploration",
-            "total_steps": len(self.captured_steps),
-            "field_dependencies": self.field_dependencies,
-            "steps": self.captured_steps
-        }
+        # Update the JSON to include field_dependencies
+        with open(output_file, 'r', encoding='utf-8') as f:
+            result = json.load(f)
+
+        result["field_dependencies"] = self.field_dependencies
 
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(result, f, indent=2, ensure_ascii=False)
 
         print(f"✓ Results saved to: {output_file}")
-        print(f"✓ Screenshots saved to: {self.screenshots_dir}")
+        print(f"✓ Screenshots saved to: {self.recorder.screenshots_dir}")
 
         # Print dependency summary
         if self.field_dependencies:
@@ -823,12 +792,8 @@ class FieldDependencyExplorer:
 
     def close(self):
         """Clean up resources"""
-        if self.context:
-            self.context.close()
-        if self.browser:
-            self.browser.close()
-        if self.playwright:
-            self.playwright.stop()
+        if self.cleanup:
+            self.cleanup()
 
 
 def main():
@@ -881,17 +846,17 @@ Examples:
 
     try:
         # Run exploration
-        captured_steps = explorer.explore_dependencies(target_url=args.url)
+        captured_steps = explorer.explore_dependencies(target_url=args.url, feature_name=args.feature_name)
 
         if captured_steps:
             # Save results
-            output_file = explorer.save_results(args.feature_name)
+            output_file = explorer.save_results()
 
             print("\n" + "="*60)
             print("NEXT STEPS")
             print("="*60)
             print(f"\n1. Review dependencies: {output_file}")
-            print(f"2. Review screenshots: {explorer.screenshots_dir}")
+            print(f"2. Review screenshots: {explorer.recorder.screenshots_dir}")
             print(f"3. Use this data to document field interactions")
             print("="*60 + "\n")
         else:

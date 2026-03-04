@@ -31,7 +31,7 @@ chrome --remote-debugging-port=9222
 cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
 
 # 全自动模式 (推荐)
-python auto_browse_cam.py \
+python auto_browse_cam_v3.py \
   --url https://cam.cammaster.org/v3/analysis/reporting/routine \
   --feature-name routine-report
 ```
@@ -54,7 +54,7 @@ python auto_browse_cam.py \
 ### 模式 1: 全自动 (推荐)
 
 ```bash
-python auto_browse_cam.py --url <url> --feature-name <name>
+python auto_browse_cam_v3.py --url <url> --feature-name <name>
 ```
 
 **优点**:
@@ -179,7 +179,7 @@ self.page.wait_for_timeout(2000)  # 改为 5000 (5秒)
 
 # 3. 在另一个终端运行
 cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
-python auto_browse_cam.py \
+python auto_browse_cam_v3.py \
   --url https://cam.cammaster.org/v3/analysis/reporting/routine \
   --feature-name routine-report
 
@@ -196,7 +196,7 @@ cat captured_data/routine-report_captured.json
 2. `cam-browser-capture` 会询问: "What materials do you have?"
 3. 选择 **Option A: Live browser automation**
 4. 选择 **Automatic mode**
-5. Sub-skill 会自动运行 `auto_browse_cam.py`
+5. Sub-skill 会自动运行 `auto_browse_cam_v3.py`
 6. 主 skill 使用抓取的数据生成文档
 
 完全自动化,无需手动操作!

@@ -45,17 +45,14 @@ class ExplorationBudget:
     - Total steps taken
     - Unique states visited
     - Total execution time
-    - Retries per action
     """
     max_steps: int = 100
     max_states: int = 50
     max_time_seconds: int = 300  # 5 minutes
-    max_retries_per_action: int = 3
 
     # Internal tracking
     steps_taken: int = field(default=0, init=False)
     visited_states: set = field(default_factory=set, init=False)
-    retry_counts: dict = field(default_factory=dict, init=False)
     start_time: float = field(default_factory=time, init=False)
 
     def can_continue_steps(self) -> bool:
@@ -84,14 +81,6 @@ class ExplorationBudget:
     def record_state(self, state_fingerprint: str):
         """Record a visited state"""
         self.visited_states.add(state_fingerprint)
-
-    def can_retry(self, action_id: str) -> bool:
-        """Check if action can be retried"""
-        return self.retry_counts.get(action_id, 0) < self.max_retries_per_action
-
-    def increment_retries(self, action_id: str):
-        """Increment retry counter for action"""
-        self.retry_counts[action_id] = self.retry_counts.get(action_id, 0) + 1
 
     def get_status(self) -> dict:
         """Get current budget status"""

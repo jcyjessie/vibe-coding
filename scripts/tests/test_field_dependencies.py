@@ -522,21 +522,6 @@ def test_exploration_budget_max_time():
     assert not budget.can_continue_time()
 
 
-def test_exploration_budget_max_retries():
-    """Test that retries are limited per action"""
-    from explore_field_dependencies import ExplorationBudget
-
-    budget = ExplorationBudget(max_retries_per_action=3)
-
-    action_id = "click_button"
-    assert budget.can_retry(action_id)
-
-    for i in range(3):
-        budget.increment_retries(action_id)
-
-    assert not budget.can_retry(action_id)
-
-
 def test_exploration_budget_integration():
     """Integration test: verify FieldDependencyExplorer respects budget limits"""
     from explore_field_dependencies import ExplorationBudget, FieldDependencyExplorer
@@ -560,6 +545,7 @@ def test_exploration_budget_integration():
 
     # Verify can_continue returns False when any budget is exhausted
     assert not explorer.budget.can_continue()
+
 
 
 def test_v3_integration():

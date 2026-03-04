@@ -155,6 +155,26 @@ python explore_field_dependencies.py --url <form-url> --output-dir <output-path>
    - API endpoint verification (authenticated call)
    - Combined mode (both must pass)
 
+## Login Validation (V3)
+
+**Strong Signal Validation:**
+
+The login process now uses multiple validation strategies:
+
+1. **Home Selector Check**: Waits for stable UI elements (`.user-menu`, `[data-testid='user-profile']`)
+2. **API Verification**: Calls `/api/user/info` to verify authenticated session
+3. **Combined Mode**: Requires both checks to pass (configurable)
+
+**Configuration:**
+
+```python
+validator = LoginValidator(
+    home_selectors=[".user-menu"],
+    api_endpoint="/api/user/info",
+    require_both=True  # Strict mode
+)
+```
+
 **Usage with Budget Control:**
 
 ```bash

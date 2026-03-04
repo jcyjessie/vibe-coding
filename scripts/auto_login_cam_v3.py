@@ -36,6 +36,7 @@ except ImportError:
     sys.exit(1)
 
 from retry_handler import RetryHandler, RetryableError
+from core.browser_factory import create_page
 from dataclasses import dataclass
 from typing import List, Optional
 
@@ -63,6 +64,10 @@ class LoginValidator:
                 "[data-testid='user-profile']",
                 ".account-dropdown"
             ]
+
+        # Validate that home_selectors is not empty
+        if not self.home_selectors:
+            raise ValueError("home_selectors cannot be empty")
 
         if self.require_both and not self.api_endpoint:
             raise ValueError("require_both=True requires api_endpoint to be set")
@@ -106,13 +111,13 @@ class LoginValidator:
             try:
                 locator = page.locator(selector)
                 if locator.is_visible(timeout=self.timeout):
-                    print(f"✓ Login verified: found home selector '{selector}'")
+                    logger.info(f"✓ Login verified: found home selector '{selector}'")
                     return True
-            except Exception as e:
-                print(f"  Selector '{selector}' not found: {e}")
+            except (TimeoutError, Exception) as e:
+                logger.debug(f"  Selector '{selector}' not found: {e}")
                 continue
 
-        print("✗ Login verification failed: no home selectors found")
+        logger.error("✗ Login verification failed: no home selectors found")
         return False
 
     def verify_login_via_api(self, page) -> bool:
@@ -130,43 +135,32 @@ class LoginValidator:
             response = page.request.get(self.api_endpoint)
 
             if response.status == self.expected_status:
-                print(f"✓ Login verified: API {self.api_endpoint} returned {response.status}")
+                logger.info(f"✓ Login verified: API {self.api_endpoint} returned {response.status}")
                 return True
             else:
-                print(f"✗ API check failed: expected {self.expected_status}, got {response.status}")
+                logger.error(f"✗ API check failed: expected {self.expected_status}, got {response.status}")
                 return False
 
-        except Exception as e:
-            print(f"✗ API check failed: {e}")
+        except (AttributeError, TimeoutError, Exception) as e:
+            logger.error(f"✗ API check failed: {e}")
             return False
 
 
-def verify_login(page, base_url: str = "https://fresh2.cammaster.org") -> bool:
+def verify_login(page) -> bool:
     """
     Verify login success with strong signal validation.
 
     Args:
         page: Playwright page object
-        base_url: CAM base URL for API endpoint construction
 
     Returns:
         True if login verified, False otherwise
     """
     logger.info("\n=== Verifying Login Success ===")
 
-    # Use LoginValidator for robust verification
-    # Note: Adjust selectors and API endpoint based on actual CAM UI/API structure
-    validator = LoginValidator(
-        home_selectors=[
-            ".user-menu",
-            "[data-testid='user-profile']",
-            ".account-dropdown",
-            "[class*='user']",
-            "[class*='profile']"
-        ],
-        api_endpoint=None,  # Set to actual CAM API endpoint if available (e.g., f"{base_url}/api/user/info")
-        require_both=False  # Selector-only for now, can enable API when endpoint is known
-    )
+    # Use LoginValidator with default selectors (no duplication)
+    # Note: Can add API endpoint when actual CAM API structure is known
+    validator = LoginValidator()
 
     return validator.verify_login_success(page)
 
@@ -203,92 +197,84 @@ def auto_login(
 
     # 定义登录操作（用于重试）
     def perform_login():
-        with sync_playwright() as p:
-            # Launch browser with proxy (like Kintsugi)
-            browser = p.chromium.launch(
-                headless=headless,
-                channel="chrome",
-                proxy={"server": "http://localhost:7890"}
-            )
+        # Use BrowserFactory to create page
+        page, cleanup = create_page(headless=headless)
 
-            # Create new page (no existing state)
-            page = browser.new_page()
+        try:
+            # Navigate to login page
+            logger.info(f"Navigating to {base_url}/login...")
+            page.goto(f"{base_url}/login", timeout=30000)
+            page.wait_for_load_state("networkidle", timeout=10000)
 
+            # Fill in credentials
+            logger.info("Filling in credentials...")
+            page.get_by_role("textbox", name="Email/User").fill(username)
+            page.get_by_role("textbox", name="Password").fill(password)
+
+            # Click login button
+            logger.info("Clicking login button...")
+            page.get_by_role("button", name="Log in").click()
+
+            # Wait a moment for the page to respond
+            page.wait_for_timeout(3000)
+
+            # Check for error messages
+            current_url = page.url
+            logger.info(f"Current URL after login: {current_url}")
+
+            # Check if there's an error message on the page
             try:
-                # Navigate to login page
-                logger.info(f"Navigating to {base_url}/login...")
-                page.goto(f"{base_url}/login", timeout=30000)
-                page.wait_for_load_state("networkidle", timeout=10000)
+                error_element = page.locator(".ant-message-error, .error-message, [class*='error']").first
+                if error_element.is_visible(timeout=2000):
+                    error_text = error_element.text_content()
+                    logger.error(f"Login error detected: {error_text}")
+                    raise RetryableError(f"Login failed with error: {error_text}")
+            except:
+                # No error message found, continue
+                pass
 
-                # Fill in credentials
-                logger.info("Filling in credentials...")
-                page.get_by_role("textbox", name="Email/User").fill(username)
-                page.get_by_role("textbox", name="Password").fill(password)
+            # Wait for redirect to home page (or any v3 page)
+            logger.info("Waiting for login to complete...")
+            try:
+                page.wait_for_url("**/v3/**", timeout=10000)
+            except:
+                # Check if we're already at v3
+                if "/v3" not in page.url:
+                    # Not at v3 yet, might need manual intervention
+                    if not headless:
+                        logger.info("Manual verification may be required!")
+                        logger.info("Please check the browser window and complete any verification.")
+                        logger.info("Waiting 30 seconds for you to complete...")
+                        page.wait_for_timeout(30000)
+                    else:
+                        logger.warning("Not redirected to v3 and running in headless mode")
+                        raise RetryableError("Login did not redirect to v3 page")
 
-                # Click login button
-                logger.info("Clicking login button...")
-                page.get_by_role("button", name="Log in").click()
+            # Use LoginValidator for robust verification
+            if not verify_login(page):
+                raise RetryableError("Login verification failed - no home selectors found")
 
-                # Wait a moment for the page to respond
-                page.wait_for_timeout(3000)
+            logger.info("Login successful!")
+            logger.info(f"Current URL: {page.url}")
 
-                # Check for error messages
-                current_url = page.url
-                logger.info(f"Current URL after login: {current_url}")
+            # Save authentication state (cookies + localStorage)
+            logger.info("Saving authentication state...")
+            page.context.storage_state(path=str(auth_path))
 
-                # Check if there's an error message on the page
-                try:
-                    error_element = page.locator(".ant-message-error, .error-message, [class*='error']").first
-                    if error_element.is_visible(timeout=2000):
-                        error_text = error_element.text_content()
-                        logger.error(f"Login error detected: {error_text}")
-                        raise RetryableError(f"Login failed with error: {error_text}")
-                except:
-                    # No error message found, continue
-                    pass
+            logger.info(f"Auth state saved to: {auth_file}")
+            logger.info("You can now run the capture script with this auth state")
 
-                # Wait for redirect to home page (or any v3 page)
-                logger.info("Waiting for login to complete...")
-                try:
-                    page.wait_for_url("**/v3/**", timeout=10000)
-                except:
-                    # Check if we're already at v3
-                    if "/v3" not in page.url:
-                        # Not at v3 yet, might need manual intervention
-                        if not headless:
-                            logger.info("Manual verification may be required!")
-                            logger.info("Please check the browser window and complete any verification.")
-                            logger.info("Waiting 30 seconds for you to complete...")
-                            page.wait_for_timeout(30000)
-                        else:
-                            logger.warning("Not redirected to v3 and running in headless mode")
-                            raise RetryableError("Login did not redirect to v3 page")
+        except RetryableError:
+            # Re-raise retryable errors
+            raise
+        except Exception as e:
+            logger.error(f"Login failed: {e}")
+            import traceback
+            traceback.print_exc()
+            raise RetryableError(f"Login operation failed: {e}")
 
-                # Use LoginValidator for robust verification
-                if not verify_login(page, base_url):
-                    raise RetryableError("Login verification failed - no home selectors found")
-
-                logger.info("Login successful!")
-                logger.info(f"Current URL: {page.url}")
-
-                # Save authentication state (cookies + localStorage)
-                logger.info("Saving authentication state...")
-                page.context.storage_state(path=str(auth_path))
-
-                logger.info(f"Auth state saved to: {auth_file}")
-                logger.info("You can now run the capture script with this auth state")
-
-            except RetryableError:
-                # Re-raise retryable errors
-                raise
-            except Exception as e:
-                logger.error(f"Login failed: {e}")
-                import traceback
-                traceback.print_exc()
-                raise RetryableError(f"Login operation failed: {e}")
-
-            finally:
-                browser.close()
+        finally:
+            cleanup()
 
     # 使用重试处理器执行登录
     retry_handler = RetryHandler(max_retries=3, base_delay=2.0)

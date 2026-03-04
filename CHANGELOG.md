@@ -1,5 +1,35 @@
 # CAM User Guide Writer - Changelog
 
+## [4.0.0] - 2026-03-04
+
+### Breaking Changes
+
+**Modular Architecture:**
+- Split monolithic 670-line skill into 6 focused sub-skills
+- Main skill now acts as lightweight dispatcher (100 lines)
+- Each sub-skill has single responsibility
+
+**Sub-Skills:**
+- cam-complexity-assessor: Assess feature complexity
+- cam-doc-structure-builder: Choose template and build outline
+- cam-doc-formatter: Format content with inline validation
+- cam-browser-capture: Browser automation + Python scripts
+- cam-code-searcher: Search codebase for business logic
+- cam-doc-validator: Comprehensive final validation
+
+**Cleanup:**
+- Deleted 19MB test artifacts (scripts/captured_data/)
+- Deleted 192KB archive directory
+- Deleted references/ (content embedded in sub-skills)
+- Moved Python scripts to cam-browser-capture
+
+**Impact:**
+- Size: 39MB → 20MB (48% reduction)
+- Main skill: 670 lines → 100 lines (85% reduction)
+- Maintainability: Single responsibility per skill
+
+---
+
 ## [3.1.0] - 2026-03-04
 
 ### Documentation Restructuring (Phase 1 & 2)

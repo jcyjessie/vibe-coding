@@ -26,6 +26,8 @@ except ImportError:
 from state_tracker import StateTracker
 from selector_engine import SelectorEngine
 from retry_handler import RetryHandler, RetryableError
+from core.browser_factory import create_page
+from core.artifacts import StepRecorder
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -38,15 +40,8 @@ class CAMCaptureV3:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
 
-        self.screenshots_dir = self.output_dir / "screenshots"
-        self.screenshots_dir.mkdir(exist_ok=True)
-
-        self.playwright = None
-        self.browser = None
-        self.context = None
         self.page = None
-        self.captured_steps = []
-        self.step_counter = 1
+        self.cleanup = None
         self.headless = headless
 
         # 初始化状态跟踪模块
@@ -54,31 +49,17 @@ class CAMCaptureV3:
         self.selector_engine = SelectorEngine()
         self.retry_handler = RetryHandler(max_retries=3, base_delay=1.0)
 
+        # Note: StepRecorder will be initialized in automatic_capture() with feature_name
+        self.recorder = None
+
     def launch_browser(self):
         """Launch Chrome with storageState (Kintsugi style)"""
         try:
-            if not self.auth_file.exists():
-                logger.error(f"Auth file not found: {self.auth_file}")
-                logger.info("Please run auto_login_cam_v2.py first to log in.")
-                return False
-
-            self.playwright = sync_playwright().start()
-
-            # Launch browser with proxy
-            self.browser = self.playwright.chromium.launch(
-                headless=self.headless,
-                channel="chrome",
-                proxy={"server": "http://localhost:7890"}
+            # Use BrowserFactory to create page
+            self.page, self.cleanup = create_page(
+                auth_file=str(self.auth_file),
+                headless=self.headless
             )
-
-            # Create context with saved authentication state
-            self.context = self.browser.new_context(
-                storage_state=str(self.auth_file),
-                viewport={"width": 1920, "height": 1080}
-            )
-
-            # Create new page
-            self.page = self.context.new_page()
 
             logger.info(f"Browser launched with auth state: {self.auth_file}")
             return True
@@ -149,23 +130,8 @@ class CAMCaptureV3:
         # 记录新状态
         self.state_tracker.mark_state_visited(fingerprint)
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        screenshot_filename = f"{step_name}_{timestamp}.png"
-        screenshot_path = self.screenshots_dir / screenshot_filename
-
-        # Take screenshot
-        self.page.screenshot(path=str(screenshot_path), full_page=False)
-
-        # Extract page information
-        page_info = {
-            "step_number": self.step_counter,
-            "step_name": step_name,
-            "description": description,
-            "url": self.page.url,
-            "title": self.page.title(),
-            "screenshot": str(screenshot_filename),
-            "timestamp": timestamp
-        }
+        # Extract page information for extra_data
+        page_info = {}
 
         # Extract visible buttons
         try:
@@ -208,19 +174,24 @@ class CAMCaptureV3:
             logger.debug(f"Failed to extract dropdowns: {e}")
             page_info["dropdowns"] = []
 
-        logger.info(f"Step {self.step_counter}: {description}")
-        logger.info(f"  Screenshot: {screenshot_filename}")
         logger.info(f"  Buttons: {len(page_info.get('buttons', []))}, Inputs: {len(page_info.get('input_fields', []))}, Dropdowns: {len(page_info.get('dropdowns', []))}")
 
-        self.step_counter += 1
+        # Use StepRecorder to capture
+        return self.recorder.capture_step(
+            page=self.page,
+            step_name=step_name,
+            description=description,
+            extra_data=page_info
+        )
 
-        return page_info
-
-    def automatic_capture(self, target_url: str):
+    def automatic_capture(self, target_url: str, feature_name: str = "feature"):
         """Automatically explore and capture the page"""
         logger.info("=" * 60)
         logger.info("AUTOMATIC CAPTURE MODE - V3 (STATE TRACKING)")
         logger.info("=" * 60)
+
+        # Initialize StepRecorder with feature name
+        self.recorder = StepRecorder(output_dir=str(self.output_dir), feature_name=feature_name)
 
         # Navigate to URL
         logger.info(f"Navigating to: {target_url}")
@@ -232,8 +203,6 @@ class CAMCaptureV3:
 
         # Step 1: Capture initial state
         result = self.capture_screenshot("01-initial-page", "Initial page load")
-        if result:
-            self.captured_steps.append(result)
 
         # Step 2: Find and capture interactive elements
         self._capture_interactive_elements()
@@ -242,10 +211,10 @@ class CAMCaptureV3:
         self._capture_modals()
 
         logger.info("=" * 60)
-        logger.info(f"CAPTURE COMPLETE - {len(self.captured_steps)} steps captured")
+        logger.info(f"CAPTURE COMPLETE - {self.recorder.get_step_count()} steps captured")
         logger.info("=" * 60)
 
-        return self.captured_steps
+        return self.recorder.captured_steps
 
     def _capture_interactive_elements(self):
         """Find and interact with dropdowns, buttons, date pickers"""
@@ -284,9 +253,7 @@ class CAMCaptureV3:
                             # Capture the opened dialog/form
                             step_name = f"02-new-button-clicked"
                             description = "Clicked 'New' button - configuration form opened"
-                            result = self.capture_screenshot(step_name, description)
-                            if result:
-                                self.captured_steps.append(result)
+                            self.capture_screenshot(step_name, description)
 
                             # Try to capture form fields in the dialog
                             self._capture_dialog_fields()
@@ -370,9 +337,7 @@ class CAMCaptureV3:
                             # Capture opened state
                             step_name = f"02-{element_type.replace(' ', '-')}-{idx+1}-open"
                             description = f"Opened {element_type}: {element_text}"
-                            result = self.capture_screenshot(step_name, description)
-                            if result:
-                                self.captured_steps.append(result)
+                            self.capture_screenshot(step_name, description)
 
                             # If it's a menu button, try to explore menu items
                             if "menu" in element_type:
@@ -445,9 +410,7 @@ class CAMCaptureV3:
                     # Capture the result (could be a dialog, confirmation, or action)
                     step_name = f"03-{menu_type.replace(' ', '-')}-{menu_idx+1}-{item_text.lower().replace(' ', '-')}"
                     description = f"Clicked menu item: {item_text}"
-                    result = self.capture_screenshot(step_name, description)
-                    if result:
-                        self.captured_steps.append(result)
+                    self.capture_screenshot(step_name, description)
 
                     # Check if a dialog appeared and capture its fields
                     try:
@@ -527,9 +490,7 @@ class CAMCaptureV3:
                         if modal.is_visible():
                             step_name = f"03-modal-{idx+1}"
                             description = f"Modal/Dialog {idx+1}"
-                            result = self.capture_screenshot(step_name, description)
-                            if result:
-                                self.captured_steps.append(result)
+                            self.capture_screenshot(step_name, description)
             except Exception as e:
                 logger.debug(f"Modal selector {selector} failed: {e}")
                 continue
@@ -574,9 +535,7 @@ class CAMCaptureV3:
                                         self.page.wait_for_timeout(1000)
                                         step_name = f"02-dialog-dropdown-{idx+1}"
                                         description = f"Dialog dropdown {idx+1} opened"
-                                        result = self.capture_screenshot(step_name, description)
-                                        if result:
-                                            self.captured_steps.append(result)
+                                        self.capture_screenshot(step_name, description)
                                         # Press Escape to close dropdown
                                         self.page.keyboard.press("Escape")
                                         self.page.wait_for_timeout(500)
@@ -597,34 +556,14 @@ class CAMCaptureV3:
         except Exception as e:
             logger.warning(f"Could not explore dialog fields: {e}")
 
-    def save_results(self, feature_name="feature"):
+    def save_results(self):
         """Save captured data to JSON file"""
-        output_file = self.output_dir / f"{feature_name}_captured.json"
-
-        result = {
-            "feature_name": feature_name,
-            "capture_date": datetime.now().isoformat(),
-            "capture_mode": "automatic_v3_state_tracking",
-            "total_steps": len(self.captured_steps),
-            "steps": self.captured_steps
-        }
-
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(result, f, indent=2, ensure_ascii=False)
-
-        logger.info(f"Results saved to: {output_file}")
-        logger.info(f"Screenshots saved to: {self.screenshots_dir}")
-
-        return output_file
+        return self.recorder.save_results(capture_mode="automatic_v3_state_tracking")
 
     def close(self):
         """Clean up resources"""
-        if self.context:
-            self.context.close()
-        if self.browser:
-            self.browser.close()
-        if self.playwright:
-            self.playwright.stop()
+        if self.cleanup:
+            self.cleanup()
 
 
 def main():
@@ -695,17 +634,17 @@ Examples:
 
     try:
         # Run automatic capture
-        captured_steps = capture.automatic_capture(target_url=args.url)
+        captured_steps = capture.automatic_capture(target_url=args.url, feature_name=args.feature_name)
 
         if captured_steps:
             # Save results
-            output_file = capture.save_results(args.feature_name)
+            output_file = capture.save_results()
 
             logger.info("=" * 60)
             logger.info("NEXT STEPS")
             logger.info("=" * 60)
             logger.info(f"1. Review captured data: {output_file}")
-            logger.info(f"2. Review screenshots: {capture.screenshots_dir}")
+            logger.info(f"2. Review screenshots: {capture.recorder.screenshots_dir}")
             logger.info(f"3. Use this data to generate CAM documentation")
             logger.info("=" * 60)
         else:

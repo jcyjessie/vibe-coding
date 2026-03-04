@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# Backups
+*.backup
+*.bak
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Skill packages
+*.skill
+
+# Captured data (optional - uncomment if you don't want to commit screenshots)
+# captured_data/screenshots/
+# scripts/captured_data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# Git
+*.orig

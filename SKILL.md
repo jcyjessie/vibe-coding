@@ -122,19 +122,57 @@ Use numbered headings like `### 1. Go to X` with a screenshot after each step.
   - Use cases help users understand the practical value and application of the feature
   - Example: See `35.home-manual.md` for comprehensive use case examples (Portfolio Manager for Funding-Rate Arbitrage, LongShort Strategy, Middle/Back Office Users)
 
-## Writing Style
+## WRITING RULES (MANDATORY)
 
-**Tone**: Professional but approachable. Write for institutional crypto traders and fund managers who are technically literate but may not know every CAM feature.
+## CONDITIONAL RULES
 
-**Voice**: Active voice, second person ("you can", "users can"). Be direct and specific.
+### [IF feature is beta]
+→ Include support contact sentence in Introduction:
+"If you encounter any issues, please reach out to the 1Token support team."
 
-**Language**: English only. No Chinese characters — the build will fail if Chinese text appears in doc content.
+### [IF feature is configurable]
+→ Example section is MANDATORY
+→ Must show complete setup with actual values
+→ Must explain WHY each field is set that way
 
-**Navigation**: CAM uses a **side menu**, not a top menu. Navigation paths look like: **Ops & Accounting > API Account Setup > DeFi**.
+### [IF feature is complex (5+ sub-features)]
+→ Suggest splitting into multiple docs:
+  - Overview page (introduction + navigation)
+  - Separate pages for each major sub-feature
 
-**UI label accuracy**: Always use the exact label shown in the product. When in doubt, ask the PM to confirm field names before publishing. Common examples:
-- Account display name field: **Account Name** (not "Label")
-- Portfolio assignment field: **Portfolio** (not "Portfolio Tag")
+### [IF using browser automation]
+→ Verify NO Chinese characters in screenshots
+→ Verify NO error messages in screenshots
+→ Verify screenshots show stable UI state (not loading spinners)
+
+### [IF searching codebase]
+→ Search i18n files FIRST (highest value)
+→ Then frontend components
+→ Then backend code
+→ Extract business rules, not just UI labels
+
+
+### Language Rules
+- Use English ONLY
+- **NO Chinese characters** (build will FAIL)
+- Active voice only ("you can", NOT "it can be done")
+- Second person ("you", "users")
+- Professional but approachable tone
+- Write for institutional crypto traders and fund managers
+
+### Formatting Rules
+- Bold UI elements: **Save**, **Confirm**, **Account Name**
+- Navigation format: **Ops & Accounting > API Account Setup > DeFi** (side menu, not top menu)
+- Bullet lists use `-` (NOT `*`)
+- No numbered top-level headings
+- Numbered headings ONLY for step-by-step guides
+
+### UI Label Accuracy Rules
+- Use EXACT labels from the product
+- When in doubt, ask PM to confirm field names
+- Common examples:
+  - Account display name field: **Account Name** (NOT "Label")
+  - Portfolio assignment field: **Portfolio** (NOT "Portfolio Tag")
 
 ## Field Documentation Format
 
@@ -179,12 +217,19 @@ Example:
 - Verify screenshots have NO Chinese characters or error messages
 - English only - build will fail if Chinese text appears
 
-## Content Completeness Requirements
+## CONTENT RULES (MANDATORY)
 
-- **Document ALL user actions**: Include primary workflows AND reverse actions (enable/disable, create/delete, all filters/sorting/export options)
-- **Specify exact navigation paths**: Use the side menu structure (e.g., **Ops & Accounting > API Account Setup > DeFi**)
-- **Provide context first**: Explain what the feature does and why it matters before jumping to steps
-- **Prioritize comprehensiveness**: Users prefer complete guides over minimal ones
+### Completeness Rules
+- Document ALL user actions (primary + reverse actions)
+- Include enable/disable, create/delete, all filters/sorting/export options
+- Specify EXACT navigation paths using side menu structure
+- Provide context FIRST (what + why) before steps (how)
+- Prioritize comprehensiveness over brevity
+
+### Navigation Rules
+- Always use side menu format: **Menu > Submenu > Item**
+- Example: **Ops & Accounting > API Account Setup > DeFi**
+- Never use top menu references (CAM doesn't have top menu)
 
 ## Documentation Quality Standards
 
@@ -243,6 +288,25 @@ When writing a guide, use placeholder references and note to the PM that they ne
 
 For detailed formatting rules (callout boxes, tables, formulas, videos), read `references/formatting-guide.md`.
 
+## OUTPUT LENGTH GUIDANCE
+
+### Target Word Counts
+- **Small feature** (button, dropdown, simple filter): 400–800 words
+- **Medium feature** (form, multi-step workflow): 800–1500 words
+- **Complex feature** (calculations, multiple workflows): 1500–2500 words
+
+### If Feature is Too Large (> 2500 words)
+Suggest splitting into multiple docs:
+1. **Overview page** - Introduction, navigation, key concepts
+2. **Feature-specific pages** - One page per major sub-feature
+
+Example split for "Fund Accounting":
+- `fund-accounting-overview.md` - Introduction and navigation
+- `fund-accounting-nav.md` - NAV calculation details
+- `fund-accounting-fees.md` - Fee accrual details
+- `fund-accounting-reports.md` - Reporting features
+
+## How to Write a Good User Guide
 ## How to Write a Good User Guide
 
 ### Step 0: Assess Complexity and Choose Approach (MANDATORY)
@@ -558,3 +622,49 @@ Files are named `<order>.<kebab-case-title>.md`, e.g.:
 - `45.live-risk.md`
 
 When creating a new file, check existing order numbers and pick one that fits logically.
+
+---
+
+## SELF-CHECK BEFORE RETURNING (MANDATORY)
+
+Before returning the final Markdown document, verify ALL of the following:
+
+### Frontmatter Validation
+- [ ] Frontmatter block exists and is correctly formatted
+- [ ] `title` field is present and concise (< 50 characters)
+- [ ] `permalink` follows `/user-guide/kebab-case/` format
+- [ ] `order` field is present (remind PM to verify against existing docs)
+- [ ] `subTitle` is set (`FAQ` for features, `Onboarding` for setup)
+- [ ] `date` is in `YYYY-MM-DD HH:MM:SS` format
+- [ ] `categories` includes `User Guide`
+
+### Structure Validation
+- [ ] No numbered top-level headings (e.g., `## 1. Introduction` is WRONG)
+- [ ] Numbered headings only in step-by-step sections (e.g., `### 1. Go to Settings`)
+- [ ] Document type matches feature complexity (Setup/Feature Manual/FAQ)
+
+### Content Completeness
+- [ ] **Example section exists** if feature is configurable (MANDATORY)
+- [ ] **Use Cases section exists** if feature is complex (MANDATORY for Feature Manuals)
+- [ ] **Support contact sentence** for beta features: "If you encounter any issues, please reach out to the 1Token support team."
+- [ ] All user-operable actions documented (primary + reverse actions)
+- [ ] Every major workflow step has screenshot placeholder
+
+### Language and Formatting
+- [ ] **NO Chinese characters** in document content (build will FAIL)
+- [ ] UI elements are bolded: **Save**, **Confirm**
+- [ ] Navigation paths use side menu format: **Ops & Accounting > API Account Setup > DeFi**
+- [ ] Bullet lists use `-` (NOT `*`)
+
+### Screenshot Coverage
+- [ ] Every section has at least one screenshot placeholder
+- [ ] Complex interactions have multiple screenshots (trigger → opened → result)
+- [ ] Screenshot paths follow format: `./resources/feature-name/image-name.png`
+
+### Output Length Check
+- [ ] Small feature: 400–800 words
+- [ ] Medium feature: 800–1500 words
+- [ ] Complex feature: 1500–2500 words
+- [ ] If > 2500 words, suggest splitting into multiple docs
+
+**If ANY check fails, FIX the issue before delivering the document.**

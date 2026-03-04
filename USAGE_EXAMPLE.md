@@ -1,234 +1,164 @@
-# CAM User Guide Writer - Usage Example
+# CAM User Guide Writer - Usage Examples
 
-This document shows how to use the skill with automated browser capture.
+This document shows two real-world examples of using the skill.
 
-## Complete Workflow Example
+---
 
-### Scenario
-You need to write documentation for the "Portfolio Snapshot" feature in CAM.
+## Example 1: Simple Feature (Low Complexity)
 
-### Step-by-Step Process
+**Feature:** Time Selector component
 
-#### 1. Start the Conversation
+**Complexity:** Low - Simple UI component with dropdown options
 
-```
-User: "I need to write a user guide for the Portfolio Snapshot feature"
-```
+### Workflow
 
-#### 2. Skill Triggers and Asks About Capture Method
+**User:** "I need to write a user guide for the Time Selector component"
 
-```
-Assistant: "I'll help you write the Portfolio Snapshot user guide.
+**Assistant:**
+- Assesses complexity: Low (simple UI component)
+- Chooses approach: Manual Q&A (Option C)
+- Asks clarifying questions about the component
 
-First, let me ask: Do you want to use automated browser capture or provide information manually?
+**Questions Asked:**
+- What does the Time Selector do?
+- What time range options are available?
+- Where is it used in CAM?
+- Are there any limitations?
 
-Option A: Automated Browser Capture (Recommended)
-- I'll guide you to run a script that captures screenshots and UI labels automatically
-- Requires: Chrome with debugging port, Playwright installed
-- Benefits: Accurate UI labels, complete workflow, organized screenshots
+**Output:**
+- 600-word documentation
+- Structure: Introduction → User Guide → Tips
+- No Example section needed (not configurable)
+- 3 screenshot placeholders
 
-Option B: Manual Information Gathering
-- You describe the feature and I'll ask questions
-- Traditional Q&A approach
+**Time:** ~10 minutes from start to final document
 
-Which option would you prefer?"
-```
+---
 
-#### 3. User Chooses Automated Capture
+## Example 2: Complex Feature (High Complexity)
 
-```
-User: "Let's use automated capture. I have Chrome and can install Playwright."
-```
+**Feature:** Routine Report Settings
 
-#### 4. Assistant Guides Setup
+**Complexity:** High - Configuration form with calculations, scheduling, multiple field dependencies
 
-```
-Assistant: "Great! Let's set up automated capture:
+### Workflow
 
-Step 1: Install Playwright (if not already installed)
-```bash
-pip install playwright
-playwright install chromium
-```
+**User:** "I need to write a user guide for Routine Report Settings"
 
-Step 2: Start Chrome with debugging port
-Open a terminal and run:
-```bash
-chrome --remote-debugging-port=9222
-```
+**Assistant:**
+- Assesses complexity: High (calculations, dependencies, backend logic)
+- Chooses approach: Browser capture + Code search (Option A + Code)
+- Guides browser automation setup
 
-Step 3: Log into CAM in that Chrome window
-Navigate to your CAM instance and log in normally.
+**Information Gathering:**
 
-Step 4: Run the capture script
-In another terminal:
-```bash
-cd /Users/jessiecao/.claude/skills/cam-user-guide-writer/scripts
-python browse_cam.py --url https://your-cam-url.com/portfolio --feature-name portfolio-snapshot
-```
+1. **Browser Capture** (Option A - Automatic mode):
+   ```bash
+   python auto_browse_cam.py --url https://cam.1token.trade/v3/settings/reports --feature-name routine-report-settings
+   ```
+   - Captures 12 screenshots
+   - Extracts UI labels and field options
+   - Records interaction flows
 
-The script will enter interactive mode. Perform these actions in the browser:
-1. Click 'Create Snapshot' button
-2. Fill in snapshot name
-3. Click 'Confirm'
-4. View the created snapshot
-5. Click 'Export' button
-6. Select export format
+2. **Code Search** (Step 1.5):
+   - Searches i18n files for business rules
+   - Finds data delay explanations
+   - Discovers validation constraints
+   - Extracts calculation formulas
 
-After each action, come back to the terminal, press ENTER, and describe what you did.
+**Output:**
+- 1,800-word documentation
+- Structure: Introduction → Important Notes → Understanding Data Delays → User Guide → Example → Tips → FAQ
+- **Example section included** (configurable feature - MANDATORY)
+- 12 screenshots with accurate labels
+- Business rules documented from code
 
-Let me know when you've completed the capture!"
-```
+**Time:** ~30 minutes from start to final document
 
-#### 5. User Runs Capture and Provides Data
+---
 
-```
-User: "Done! The captured data is at captured_data/portfolio-snapshot_captured.json"
-```
+## Key Differences
 
-#### 6. Assistant Reads Captured Data
+| Aspect | Simple Feature | Complex Feature |
+|--------|---------------|-----------------|
+| **Complexity** | Low | High |
+| **Approach** | Manual Q&A | Browser capture + Code search |
+| **Word Count** | 600 words | 1,800 words |
+| **Screenshots** | 3 | 12 |
+| **Example Section** | Not needed | MANDATORY |
+| **Code Search** | Skipped | Required (i18n + frontend + backend) |
+| **Time** | 10 minutes | 30 minutes |
 
-```
-Assistant: [Reads the JSON file]
+---
 
-"Perfect! I've analyzed the captured data. Here's what I found:
+## When to Use Each Approach
 
-Captured workflow:
-- Step 1: Click 'Create Snapshot' button
-- Step 2: Enter snapshot name in 'Snapshot Name' field
-- Step 3: Click 'Confirm' button
-- Step 4: View snapshot in 'Snapshots' table
-- Step 5: Click 'Export' button
-- Step 6: Select 'CSV' format
+### Manual Q&A (Option C)
+**Use for:**
+- Simple UI components (buttons, dropdowns, filters)
+- Features with no calculations or backend logic
+- Quick documentation updates
 
-UI Elements found:
-- Buttons: 'Create Snapshot', 'Confirm', 'Export', 'Delete'
-- Input fields: 'Snapshot Name', 'Description'
-- Navigation: Portfolio > Snapshots
+**Example features:**
+- Time Selector
+- Account Selector
+- Simple filters
 
-Now let me propose a document structure..."
-```
+### Browser Capture (Option A)
+**Use for:**
+- Multi-step workflows
+- Forms with many fields
+- Features requiring accurate UI labels
 
-#### 7. Assistant Proposes Structure (Step 4 - MANDATORY)
+**Example features:**
+- Account setup wizards
+- Configuration forms
+- Multi-page workflows
 
-```
-Assistant: "Proposed structure for Portfolio Snapshot:
+### Browser Capture + Code Search (Option A + Code)
+**Use for:**
+- Features with calculations
+- Complex business rules
+- Backend logic that affects UI
+- Data delays or constraints
 
-## Introduction
-Brief overview of portfolio snapshot feature and its benefits
+**Example features:**
+- Routine Report Settings
+- NAV Calculation
+- Backtrack
+- Fee Accrual
 
-## Important Notes
-- Snapshot frequency limitations
-- Data retention period
+---
 
-## What is a Portfolio Snapshot
-Explanation of snapshot concept and use cases
+## Tips for Success
 
-## User Guide
-### Create a Snapshot
-### View Snapshots
-### Export Snapshot Data
-### Delete a Snapshot
+1. **Assess complexity first** - Don't over-engineer simple features
+2. **Use browser automation for accuracy** - Reduces manual fixes by 50%
+3. **Always search i18n files** for Medium/High complexity - Contains business rules
+4. **Include Example section** for configurable features - MANDATORY
+5. **Check SELF-CHECK list** before delivering - Catches 90% of issues
 
-## Tips
-Best practices for snapshot management
+---
 
-## FAQ
-- How often can I create snapshots?
-- How long are snapshots retained?
-- Can I schedule automatic snapshots?
+## Common Mistakes to Avoid
 
-Does this structure work for you?"
-```
+❌ **Don't:** Use browser automation for simple buttons
+✅ **Do:** Use manual Q&A for simple features
 
-#### 8. User Approves Structure
+❌ **Don't:** Skip code search for complex features
+✅ **Do:** Search i18n → frontend → backend for business rules
 
-```
-User: "Yes, looks good. Please write the full document."
-```
+❌ **Don't:** Forget Example section for configurable features
+✅ **Do:** Always include real-world setup example
 
-#### 9. Assistant Writes Complete Document
+❌ **Don't:** Number top-level headings (## 1., ## 2.)
+✅ **Do:** Use plain headings (## Introduction, ## User Guide)
 
-```
-Assistant: [Generates complete markdown document with:
-- Correct frontmatter
-- All sections from the outline
-- Screenshots referenced from captured data
-- Exact UI labels from captured data
-- Comprehensive coverage of all actions
-- Tips and FAQ sections
-- Proper markdown formatting]
-```
+❌ **Don't:** Include Chinese characters in docs
+✅ **Do:** Use English only (build will fail otherwise)
 
-## Example Captured Data Format
+---
 
-```json
-{
-  "feature_name": "portfolio-snapshot",
-  "capture_date": "2024-02-28T14:30:00",
-  "total_steps": 6,
-  "steps": [
-    {
-      "step_number": 1,
-      "step_name": "step-1",
-      "description": "Click Create Snapshot button",
-      "url": "https://cam.example.com/portfolio",
-      "title": "Portfolio - CAM",
-      "screenshot": "step-1_20240228_143000.png",
-      "buttons": [
-        {"text": "Create Snapshot", "type": "button"},
-        {"text": "Export", "type": "button"},
-        {"text": "Refresh", "type": "button"}
-      ],
-      "input_fields": [],
-      "headings": [
-        {"level": "H1", "text": "Portfolio Overview"},
-        {"level": "H2", "text": "Snapshots"}
-      ]
-    },
-    {
-      "step_number": 2,
-      "step_name": "step-2",
-      "description": "Enter snapshot name",
-      "url": "https://cam.example.com/portfolio/snapshot/create",
-      "title": "Create Snapshot - CAM",
-      "screenshot": "step-2_20240228_143030.png",
-      "buttons": [
-        {"text": "Confirm", "type": "button"},
-        {"text": "Cancel", "type": "button"}
-      ],
-      "input_fields": [
-        {"placeholder": "Enter snapshot name", "name": "snapshot_name", "type": "text"},
-        {"placeholder": "Optional description", "name": "description", "type": "textarea"}
-      ],
-      "headings": [
-        {"level": "H1", "text": "Create New Snapshot"}
-      ]
-    }
-  ]
-}
-```
+For detailed automation setup, see [AUTO_CAPTURE_GUIDE.md](./AUTO_CAPTURE_GUIDE.md).
 
-## Benefits of This Workflow
-
-1. **Accuracy**: UI labels are captured exactly as they appear
-2. **Completeness**: All user actions are recorded
-3. **Efficiency**: Faster than manual description
-4. **Screenshots**: Automatically organized and named
-5. **Consistency**: Same process for all features
-
-## Fallback to Manual Mode
-
-If automated capture fails or is not feasible:
-
-```
-Assistant: "I see the automated capture isn't working. Let's switch to manual mode.
-
-Can you tell me:
-1. What does the Portfolio Snapshot feature do?
-2. What are the main user actions (create, view, export, delete)?
-3. What are the exact button labels in the UI?
-4. Are there any limitations or prerequisites?"
-```
-
-Then proceed with traditional Q&A workflow.
+For complete rules and constraints, see [SKILL.md](./SKILL.md).

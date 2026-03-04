@@ -1,10 +1,51 @@
-# 全自动浏览器抓取使用指南
+# 全自动浏览器抓取使用指南 (V3)
 
 ## 快速开始
 
-### 步骤 1: 启动 Chrome 调试模式
+V3版本支持两种方式：**自动登录（推荐）** 和 **手动登录**
 
-在终端运行:
+### 方式 A: 自动登录（推荐）
+
+#### 步骤 1: 自动登录并保存认证状态
+
+```bash
+cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
+
+# 自动登录（会打开浏览器窗口）
+python auto_login_cam_v3.py \
+  --username your-username \
+  --password your-password
+
+# 或使用环境变量
+export FRESH_MASTER_ADMIN_PASSWORD=your-password
+python auto_login_cam_v3.py --username your-username
+```
+
+认证状态会保存到 `.auth/state.json`，可重复使用。
+
+#### 步骤 2: 运行自动抓取脚本
+
+```bash
+# 使用保存的认证状态
+python auto_browse_cam_v3.py \
+  --url https://cam.cammaster.org/v3/analysis/reporting/routine \
+  --feature-name routine-report \
+  --auth-file .auth/state.json
+```
+
+#### 步骤 3: 查看结果
+
+输出文件:
+- `captured_data/routine-report_captured.json` - 结构化数据
+- `captured_data/screenshots/` - 所有截图
+
+---
+
+### 方式 B: 手动登录（备选）
+
+如果自动登录失败，可以使用手动方式：
+
+#### 步骤 1: 启动 Chrome 调试模式
 
 ```bash
 # macOS
@@ -17,44 +58,38 @@ chrome --remote-debugging-port=9222
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
 ```
 
-### 步骤 2: 登录 CAM
+#### 步骤 2: 手动登录 CAM
 
-在刚才打开的 Chrome 窗口中:
+在打开的 Chrome 窗口中:
 1. 访问 https://cam.cammaster.org
 2. 登录你的账号
 
-### 步骤 3: 运行自动抓取脚本
-
-在**另一个终端窗口**运行:
+#### 步骤 3: 使用交互式脚本
 
 ```bash
 cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
 
-# 全自动模式 (推荐)
-python auto_browse_cam_v3.py \
+# 交互式模式（手动控制）
+python browse_cam.py \
   --url https://cam.cammaster.org/v3/analysis/reporting/routine \
   --feature-name routine-report
 ```
 
-**就这样!** 脚本会自动:
-- 导航到页面
-- 点击所有下拉菜单、按钮、日期选择器
-- 在每次交互后截图
-- 提取 UI 标签和按钮文字
-- 保存所有数据到 JSON
-
-### 步骤 4: 查看结果
-
-输出文件:
-- `captured_data/routine-report_captured.json` - 结构化数据
-- `captured_data/screenshots/` - 所有截图
+按 ENTER 键截图，输入 'done' 完成。
 
 ## 两种模式对比
 
 ### 模式 1: 全自动 (推荐)
 
 ```bash
-python auto_browse_cam_v3.py --url <url> --feature-name <name>
+# 先登录
+python auto_login_cam_v3.py --username admin --password pwd
+
+# 再抓取
+python auto_browse_cam_v3.py \
+  --url <url> \
+  --feature-name <name> \
+  --auth-file .auth/state.json
 ```
 
 **优点**:
@@ -62,6 +97,7 @@ python auto_browse_cam_v3.py --url <url> --feature-name <name>
 - ✅ 快速 (30秒内完成)
 - ✅ 一致性好 (每次抓取相同元素)
 - ✅ 覆盖全面 (自动发现所有常见 UI 模式)
+- ✅ 支持 headless 模式（CI/CD友好）
 
 **适用于**: 标准 CAM 功能 (下拉菜单、日期选择器、过滤器等)
 
@@ -171,21 +207,40 @@ self.page.wait_for_timeout(2000)  # 改为 5000 (5秒)
 
 ## 完整示例
 
+### 方式 A: 自动登录（推荐）
+
 ```bash
-# 1. 启动 Chrome
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
-
-# 2. 在 Chrome 中登录 CAM
-
-# 3. 在另一个终端运行
 cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
+
+# 1. 自动登录
+python auto_login_cam_v3.py --username admin --password your-password
+
+# 2. 抓取页面
 python auto_browse_cam_v3.py \
   --url https://cam.cammaster.org/v3/analysis/reporting/routine \
-  --feature-name routine-report
+  --feature-name routine-report \
+  --auth-file .auth/state.json
 
-# 4. 查看结果
+# 3. 查看结果
 ls captured_data/screenshots/
 cat captured_data/routine-report_captured.json
+```
+
+### 方式 B: Headless 模式（CI/CD）
+
+```bash
+# 1. Headless 登录
+python auto_login_cam_v3.py \
+  --username admin \
+  --password your-password \
+  --headless
+
+# 2. Headless 抓取
+python auto_browse_cam_v3.py \
+  --url https://cam.cammaster.org/v3/analysis/reporting/routine \
+  --feature-name routine-report \
+  --auth-file .auth/state.json \
+  --headless
 ```
 
 ## 与 Skill 集成
@@ -196,7 +251,7 @@ cat captured_data/routine-report_captured.json
 2. `cam-browser-capture` 会询问: "What materials do you have?"
 3. 选择 **Option A: Live browser automation**
 4. 选择 **Automatic mode**
-5. Sub-skill 会自动运行 `auto_browse_cam_v3.py`
+5. Sub-skill 会自动运行 `auto_login_cam_v3.py` 和 `auto_browse_cam_v3.py`
 6. 主 skill 使用抓取的数据生成文档
 
 完全自动化,无需手动操作!

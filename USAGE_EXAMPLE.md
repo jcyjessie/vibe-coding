@@ -15,7 +15,9 @@ This document shows two real-world examples of using the skill.
 **User:** "I need to write a user guide for the Time Selector component"
 
 **Assistant:**
+- Invokes `cam-complexity-assessor` sub-skill
 - Assesses complexity: Low (simple UI component)
+- Invokes `cam-doc-structure-builder` sub-skill
 - Chooses approach: Manual Q&A (Option C)
 - Asks clarifying questions about the component
 
@@ -46,8 +48,11 @@ This document shows two real-world examples of using the skill.
 **User:** "I need to write a user guide for Routine Report Settings"
 
 **Assistant:**
+- Invokes `cam-complexity-assessor` sub-skill
 - Assesses complexity: High (calculations, dependencies, backend logic)
+- Invokes `cam-doc-structure-builder` sub-skill
 - Chooses approach: Browser capture + Code search (Option A + Code)
+- Invokes `cam-browser-capture` sub-skill
 - Guides browser automation setup
 
 **Information Gathering:**
@@ -61,6 +66,7 @@ This document shows two real-world examples of using the skill.
    - Records interaction flows
 
 2. **Code Search** (Step 1.5):
+   - Invokes `cam-code-searcher` sub-skill
    - Searches i18n files for business rules
    - Finds data delay explanations
    - Discovers validation constraints
@@ -161,4 +167,4 @@ This document shows two real-world examples of using the skill.
 
 For detailed automation setup, see [AUTO_CAPTURE_GUIDE.md](./AUTO_CAPTURE_GUIDE.md).
 
-For complete rules and constraints, see [SKILL.md](./SKILL.md).
+For complete rules and constraints, see [skill.md](./skill.md).

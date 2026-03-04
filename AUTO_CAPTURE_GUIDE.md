@@ -28,7 +28,7 @@ chrome --remote-debugging-port=9222
 在**另一个终端窗口**运行:
 
 ```bash
-cd /Users/jessiecao/.claude/skills/cam-user-guide-writer/scripts
+cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
 
 # 全自动模式 (推荐)
 python auto_browse_cam.py \
@@ -178,7 +178,7 @@ self.page.wait_for_timeout(2000)  # 改为 5000 (5秒)
 # 2. 在 Chrome 中登录 CAM
 
 # 3. 在另一个终端运行
-cd /Users/jessiecao/.claude/skills/cam-user-guide-writer/scripts
+cd /Users/jessiecao/.claude/skills/cam-browser-capture/scripts
 python auto_browse_cam.py \
   --url https://cam.cammaster.org/v3/analysis/reporting/routine \
   --feature-name routine-report
@@ -192,11 +192,12 @@ cat captured_data/routine-report_captured.json
 
 当使用 `cam-user-guide-writer` skill 时:
 
-1. Skill 会询问: "What materials do you have?"
-2. 选择 **Option A: Live browser automation**
-3. 选择 **Automatic mode**
-4. Skill 会自动运行 `auto_browse_cam.py`
-5. 使用抓取的数据生成文档
+1. 主 skill 评估复杂度后,会调用 `cam-browser-capture` sub-skill
+2. `cam-browser-capture` 会询问: "What materials do you have?"
+3. 选择 **Option A: Live browser automation**
+4. 选择 **Automatic mode**
+5. Sub-skill 会自动运行 `auto_browse_cam.py`
+6. 主 skill 使用抓取的数据生成文档
 
 完全自动化,无需手动操作!
 

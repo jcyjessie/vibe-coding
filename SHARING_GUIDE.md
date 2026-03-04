@@ -38,10 +38,14 @@ ls ~/.claude/skills/cam-user-guide-writer
 
 # 应该看到以下文件:
 # README.md
-# SKILL.md
-# OPTIMIZATION_SUMMARY.md
-# references/
-# scripts/
+# skill.md
+# CHANGELOG.md
+# cam-complexity-assessor/
+# cam-doc-structure-builder/
+# cam-doc-formatter/
+# cam-browser-capture/
+# cam-code-searcher/
+# cam-doc-validator/
 ```
 
 ## 📖 使用说明
@@ -145,8 +149,8 @@ echo "✅ 新版本已打包: cam-user-guide-writer.skill"
 
 ## 📊 Skill 统计
 
-- **核心文件**: 310 行 (优化后,原 490 行)
-- **参考文件**: 3 个 (按需加载)
+- **核心文件**: 134 行 (优化后,原 670 行)
+- **子技能**: 6 个专门化 sub-skills
 - **Token 节省**: 简单文档节省 40%
 - **支持复杂度**: Low / Medium / High 三级
 - **自动化功能**: 浏览器截图 + 代码搜索
@@ -169,5 +173,5 @@ A: 重新打包并发送新的 `.skill` 文件,同事重新安装即可覆盖旧
 
 如果同事遇到问题:
 1. 先查看 `README.md`
-2. 查看 `OPTIMIZATION_SUMMARY.md` 了解架构
+2. 查看 `WORKFLOW_DIAGRAM.md` 了解架构
 3. 联系你 (skill 创建者)
